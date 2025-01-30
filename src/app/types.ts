@@ -1,6 +1,6 @@
 export interface VideoPreviewThumbnail {
     title: string
-    description: string
+    client: string
     src: string
     alt: string
     videoId: string

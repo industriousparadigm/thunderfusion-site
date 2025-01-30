@@ -25,7 +25,7 @@ export default function WorkGrid() {
             />
             <div className={styles.overlay}>
               <h3>{thumbnail.title}</h3>
-              <p>{thumbnail.description}</p>
+              <p>{thumbnail.client}</p>
             </div>
           </div>
         ))}

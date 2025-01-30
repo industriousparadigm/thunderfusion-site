@@ -13,7 +13,7 @@
     position: relative;
     overflow: hidden;
     cursor: pointer;
-    aspect-ratio: 9/5; /* Maintain a 2:1 width-to-height ratio */
+    aspect-ratio: 9/5;
 }
 
 .thumbnail {
