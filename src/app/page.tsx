@@ -1,95 +1,78 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import { useCallback } from 'react'
+import styles from './page.module.css'
+import Image from 'next/image'
+import WorkGrid from './components/WorkGrid'
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    const handleScroll = useCallback((id: string) => {
+        const section = document.getElementById(id)
+        if (section) {
+            section.scrollIntoView({ behavior: 'smooth' })
+        }
+    }, [])
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    return (
+        <div className={styles.container}>
+            <header className={styles.header}>
+                <div className={styles.logo}>
+                    <Image src="/tflogo.png" alt="thunder fusion logo" fill objectFit="contain" />
+                </div>
+                <nav className={styles.nav}>
+                    <a
+                        onClick={(e) => {
+                            e.preventDefault()
+                            handleScroll('work')
+                        }}
+                        className={styles.link}
+                        href="#work"
+                    >
+                        <h6>work</h6>
+                    </a>
+                    <a
+                        onClick={(e) => {
+                            e.preventDefault()
+                            handleScroll('contact')
+                        }}
+                        className={styles.link}
+                        href="#contact"
+                    >
+                        <h6>contact</h6>
+                    </a>
+                </nav>
+            </header>
+
+            <main>
+                <section className={styles.heroSection}>
+                    <div className={styles.heroText}>
+                        <h1>Thunder Fusion</h1>
+                        <p>Bold filmmaking with a human purpose</p>
+                    </div>
+                </section>
+
+                <section className={styles.aboutSection}>
+                    <h2>We capture the stories to turn missions into impact</h2>
+                    <p>
+                        Cheers! We are THUNDER FUSION, a Creative Consultancy agency specialized in{' '}
+                        <strong>humanitarian storytelling</strong>, crafting humane, dignified, and unique content for
+                        international organizations and local enterprises alike.
+                    </p>
+
+                    <p>
+                        Your mission is the spark that drives our creation. By linking people, purpose, and creativity,
+                        your content will inspire action and amplify impact.
+                    </p>
+                </section>
+
+                <section id="work" className={styles.workSection}>
+                    <WorkGrid />
+                </section>
+
+                <section id="contact" className={styles.contactSection}>
+                    <h2>Contact Us</h2>
+                    <p>Reach out and collaborate...</p>
+                </section>
+            </main>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    )
 }

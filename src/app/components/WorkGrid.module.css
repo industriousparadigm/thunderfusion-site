@@ -1,0 +1,91 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Default: 3 items per row */
+    gap: 4px;
+    width: 100%;
+    padding: 0 20px;
+    /* Padding on page edges */
+    margin: 0 auto;
+}
+
+.gridItem {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    aspect-ratio: 9/5; /* Maintain a 2:1 width-to-height ratio */
+}
+
+.thumbnail {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+}
+
+.gridItem:hover .thumbnail {
+    transform: scale(1.05);
+}
+
+/* Title and description overlay */
+.overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gridItem:hover .overlay {
+    opacity: 1;
+}
+
+.overlay h3 {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.overlay p {
+    font-size: 0.875rem;
+    margin: 5px 0 0;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2 items per row on tablet */
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+        /* 1 item per row on mobile */
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modalContent {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    width: 800px;
+}
