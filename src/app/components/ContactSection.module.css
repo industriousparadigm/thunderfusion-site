@@ -1,0 +1,86 @@
+.contactInfo {
+    position: absolute;
+    top: 64px;
+    /* adjust as needed */
+    left: 64px;
+    /* positioned near the left edge */
+    text-align: left;
+    /* left-align the text */
+    padding: 20px;
+    /* healthy padding */
+    font-family: var(--font-jost), sans-serif;
+    /* no background here, so the section's #111 shows through */
+    color: var(--black);
+}
+
+.name {
+    font-family: var(--font-permanent-marker), cursive;
+    /* fallback font if needed */
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 3rem;
+    color: var(--pink);
+    /* Mariana's name in pink */
+    margin-bottom: 0.5rem;
+}
+
+.title,
+.phone,
+.email {
+    font-size: 1.1rem;
+    margin: 8px 0;
+    /* inherits color from .contactInfo (var(--black)) */
+}
+
+/* New contactLink styling for phone and email links */
+.contactLink,
+.contactLink>* {
+    position: relative;
+    font-size: 1.1rem;
+    font-weight: normal;
+    /* not bold */
+    color: var(--black);
+    /* using the same base color as defined in .contactInfo */
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.contactLink:hover {
+    color: var(--blue);
+    /* pastel blue on hover */
+}
+
+/* Expanding gradient underline effect */
+.contactLink::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    /* thinner underline */
+    bottom: -3px;
+    /* position below the text */
+    left: 50%;
+    background: linear-gradient(90deg, var(--pink), var(--cyan));
+    transition: all 0.4s ease;
+    transform: translateX(-50%);
+}
+
+.contactLink:hover::after {
+    width: 100%;
+}
+
+.linkedin {
+    margin-top: 20px;
+    display: inline-block;
+    transition: transform 0.3s ease;
+    /* use your gray variable for the icon */
+}
+
+.linkedin:hover {
+    transform: scale(1.1);
+}
+
+/* Ensure the LinkedIn icon uses the current color */
+.linkedin svg {
+    fill: currentColor;
+}

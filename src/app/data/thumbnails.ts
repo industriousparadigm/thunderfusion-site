@@ -17,7 +17,7 @@ export const thumbnails: VideoPreviewThumbnail[] = [
     },
     {
         title: '16 Days of Activism Against Gender-Based Violence',
-        client: 'IFRC/UN Women',
+        client: 'IFRC / UN Women',
         src: 'https://img.youtube.com/vi/O5KnUVj0jwc/hqdefault.jpg',
         alt: 'Thumbnail for Gender-Based Violence',
         videoId: 'O5KnUVj0jwc'
@@ -31,10 +31,10 @@ export const thumbnails: VideoPreviewThumbnail[] = [
     },
     {
         title: 'IFPMA Interview Series: Innovation Ecosystem',
-        client: 'IFPMA- International Federation of Pharmaceutical Manufacturers and Associations',
+        client: 'International Federation of Pharmaceutical Manufacturers and Associations',
         src: 'https://img.youtube.com/vi/z7haT6I7P0Q/hqdefault.jpg',
         alt: 'Thumbnail for Stakeholder Synergy',
-        videoId: '6Uo5pZdJfB0'
+        videoId: 'z7haT6I7P0Q'
     },
     {
         title: 'Hepatitis C virus (HCV) Diagnosis',
@@ -45,7 +45,7 @@ export const thumbnails: VideoPreviewThumbnail[] = [
     },
     {
         title: 'International Conference 2015 - Daily Bulletins',
-        client: 'IFRC/ ICRC',
+        client: 'IFRC / ICRC',
         src: 'https://img.youtube.com/vi/JTDACGcvE9M/hqdefault.jpg',
         alt: 'Thumbnail for International Conference',
         videoId: 'JTDACGcvE9M'
@@ -60,9 +60,9 @@ export const thumbnails: VideoPreviewThumbnail[] = [
     {
         title: 'Uniting through the Power of Football',
         client: 'YABC & Football for Development',
-        src: 'https://img.youtube.com/vi/AxlFP46NLk/hqdefault.jpg',
+        src: 'https://img.youtube.com/vi/-AxlFP46NLk/hqdefault.jpg',
         alt: 'Thumbnail for Football',
-        videoId: 'AxlFP46NLk'
+        videoId: '-AxlFP46NLk'
     },
     {
         title: 'Radler Product Review',
@@ -91,5 +91,19 @@ export const thumbnails: VideoPreviewThumbnail[] = [
         src: 'https://img.youtube.com/vi/ZzFgD3o0oX8/hqdefault.jpg',
         alt: 'Thumbnail for World Red Cross Day',
         videoId: 'ZzFgD3o0oX8'
+    },
+    {
+        title: 'Professional Profile Interview',
+        client: 'Damien Naylor',
+        src: 'https://img.youtube.com/vi/iZMcDp8dC5A/hqdefault.jpg',
+        alt: 'Thumbnail for Last Mile',
+        videoId: 'iZMcDp8dC5A'
+    },
+    {
+        title: 'Fitness Profile',
+        client: 'Fitness Hut',
+        src: 'https://img.youtube.com/vi/6Uo5pZdJfB0/hqdefault.jpg',
+        alt: 'Thumbnail for Stakeholder Synergy',
+        videoId: '6Uo5pZdJfB0'
     }
 ]

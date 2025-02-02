@@ -3,6 +3,7 @@ import { useCallback } from 'react'
 import styles from './page.module.css'
 import Image from 'next/image'
 import WorkGrid from './components/WorkGrid'
+import ContactSection from './components/ContactSection'
 
 export default function Home() {
     const handleScroll = useCallback((id: string) => {
@@ -69,8 +70,7 @@ export default function Home() {
                 </section>
 
                 <section id="contact" className={styles.contactSection}>
-                    <h2>Contact Us</h2>
-                    <p>Reach out and collaborate...</p>
+                    <ContactSection />
                 </section>
             </main>
         </div>

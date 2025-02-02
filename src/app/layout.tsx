@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Prata, Jost } from 'next/font/google'
+import { Prata, Jost, Permanent_Marker } from 'next/font/google'
 import './globals.css'
 
 const prata = Prata({
@@ -14,6 +14,12 @@ const jost = Jost({
     display: 'swap' // Optional for faster font rendering
 })
 
+const permanentMarker = Permanent_Marker({
+    weight: '400',
+    subsets: ['latin'],
+    variable: '--font-permanent-marker'
+})
+
 export const metadata: Metadata = {
     title: 'Thunder Fusion',
     description: 'Boldness and filmmaking'
@@ -26,7 +32,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${prata.variable} ${jost.variable}`}>{children}</body>
+            <body className={`${prata.variable} ${jost.variable} ${permanentMarker.variable}`}>{children}</body>
         </html>
     )
 }

@@ -33,12 +33,13 @@
   position: relative;
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--pink); /* Soft pastel pink */
+  color: var(--pink); /* Soft pastel pink by default */
   transition: color 0.3s ease;
 }
 
-.link:hover {
-  color: #86a8e7; /* Soft pastel blue */
+a.link:hover, 
+a.link:hover * {
+  color: var(--blue); /* Soft pastel blue on hover */
 }
 
 /* Expanding gradient underline effect */
@@ -82,7 +83,10 @@
 }
 
 .heroText h1 {
-  font-size: 4rem;
+  font-family: var(--font-permanent-marker), cursive; /* fallback font if needed */
+  /* Optionally, add other styling such as font-size, color, etc. */
+  font-size: 6rem;
+  letter-spacing: 4px;
 }
 
 .heroText p {
@@ -116,13 +120,14 @@
 }
 
 .contactSection {
+  position: relative; /* so that the inner block can be absolutely positioned */
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 20px;
-  background-color: #111;
+  background-color: var(--cyan);
   color: white;
 }
 
