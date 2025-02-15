@@ -16,7 +16,8 @@
 }
 
 .logo {
-  position: relative; /* Required for the Image fill prop */
+  position: relative;
+  /* Required for the Image fill prop */
   width: 100px;
   height: 120px;
   max-width: 150px;
@@ -29,26 +30,26 @@
   gap: 20px;
 }
 
-.link, .link > * {
+.link,
+.link > * {
   position: relative;
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--pink); /* Soft pastel pink by default */
+  color: var(--pink);
   transition: color 0.3s ease;
 }
 
-a.link:hover, 
+a.link:hover,
 a.link:hover * {
-  color: var(--blue); /* Soft pastel blue on hover */
+  color: var(--cyan);
 }
 
-/* Expanding gradient underline effect */
 .link::after {
   content: '';
   position: absolute;
   width: 0;
   height: 3px;
-  top: 35px;
+  top: calc(100% + 2px); /* 2px below the bottom of the link text */
   left: 50%;
   background: linear-gradient(90deg, var(--pink), var(--cyan));
   transition: all 0.4s ease;
@@ -75,52 +76,143 @@ a.link:hover * {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3); /* Darken overlay with 50% opacity */
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .heroText {
   position: relative;
 }
 
+.showreelContainer {
+  position: absolute;
+  bottom: 100px; /* push it further up from the bottom */
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Overrides for the showreel link */
+.showreelLink {
+  font-size: 2.5rem; /* bigger than the nav links */
+  font-weight: bold;
+  /* Optionally change the font family if needed. For example: */
+  font-family: var(--font-prata), serif;
+  /* If your nav links already use the desired font, you can omit this */
+  /* Remove extra padding or margins if necessary */
+}
+
+.showreelLink::before {
+  content: '\25B6'; /* Unicode for a play triangle */
+  display: inline-block;
+  margin-right: 24px;
+  font-size: 0.825em; /* Adjust to taste */
+  vertical-align: middle;
+}
+
+/* Modal Styles – ensures full screen overlay */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalContent {
+  position: relative;
+  width: 95%;
+  height: 90vh;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.modalContent iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1100;
+  transition: color 0.3s ease;
+}
+
+.closeButton:hover {
+  color: #ff5c5c;
+}
+
 .heroText h1 {
-  font-family: var(--font-permanent-marker), cursive; /* fallback font if needed */
+  font-family: var(--font-permanent-marker), cursive;
+  /* fallback font if needed */
   /* Optionally, add other styling such as font-size, color, etc. */
   font-size: 6rem;
   letter-spacing: 4px;
 }
 
 .heroText p {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
 }
 
 .aboutSection {
   background-color: var(--black);
-  padding: 60px;
+  padding: 64px 16px;
   text-align: center;
   color: white;
 }
 
 .aboutSection h2 {
   font-size: 2.5rem;
-  margin-bottom: 20px;
+  margin-bottom: 48px;
 }
 
 .aboutSection p {
   font-size: 1.25rem;
   line-height: 1.8;
-  max-width: 800px;
+  max-width: 60%;
   margin: 0 auto 16px;
+}
+
+/* For tablet and below, increase the max-width */
+@media (max-width: 1024px) {
+  .aboutSection p {
+    max-width: unset;
+  }
 }
 
 .workSection {
   background-color: var(--black);
   color: white;
-  padding: 80px 0; /* Increased padding for better spacing */
-  display: block; /* Change from flex to block to allow full-width content */
+  /* padding: 80px 0; */
+  /* Increased padding for better spacing */
+  display: block;
+  /* Change from flex to block to allow full-width content */
 }
 
 .contactSection {
-  position: relative; /* so that the inner block can be absolutely positioned */
+  position: relative;
+  /* so that the inner block can be absolutely positioned */
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -132,8 +224,10 @@ a.link:hover * {
 }
 
 .grid {
-  width: 100%; /* Ensure the grid takes full width */
-  margin: 0 auto; /* Center the grid within the section */
+  width: 100%;
+  /* Ensure the grid takes full width */
+  margin: 0 auto;
+  /* Center the grid within the section */
 }
 
 .gridItem {
@@ -145,3 +239,25 @@ a.link:hover * {
   color: white;
 }
 
+/* For mobile devices */
+@media (max-width: 600px) {
+  .heroText {
+    text-align: center;
+  }
+  .heroText h1 {
+    font-size: 4rem;    /* Reduce the company name size */
+  }
+
+  .heroText p {
+    font-size: 1.5rem;    /* Reduce the tagline size */
+  }
+
+  .showreelLink {
+    font-size: 1.5rem;  /* Make the showreel link smaller */
+  }
+
+  /* Optionally, adjust the showreel container position */
+  .showreelContainer {
+    bottom: 40px; /* Bring it a bit lower if needed */
+  }
+}

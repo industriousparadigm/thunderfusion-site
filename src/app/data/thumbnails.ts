@@ -4,7 +4,7 @@ export const thumbnails: VideoPreviewThumbnail[] = [
     {
         title: 'Household Economics Security',
         client: 'British Red Coss',
-        src: 'https://img.youtube.com/vi/-k4LTkx3dAQ/hqdefault.jpg',
+        src: '/thumbnails/hes.jpeg',
         alt: 'Thumbnail for HES',
         videoId: '-k4LTkx3dAQ'
     },

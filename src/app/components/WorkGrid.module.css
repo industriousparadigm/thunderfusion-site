@@ -8,6 +8,19 @@
     margin: 0 auto;
 }
 
+/* Responsive design remains unchanged */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
 .gridItem {
     position: relative;
     overflow: hidden;
@@ -15,6 +28,13 @@
     aspect-ratio: 9/5;
 }
 
+@media (min-width: 600px) {
+    .gridItem:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+  }
+  
 /* Thumbnail image: now zoomed in further by default */
 .thumbnail {
     object-fit: cover;
@@ -71,19 +91,6 @@
     font-size: 1.125rem;
     text-transform: none;
     margin: 5px 0 0;
-}
-
-/* Responsive design remains unchanged */
-@media (max-width: 1024px) {
-    .grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 600px) {
-    .grid {
-        grid-template-columns: repeat(1, 1fr);
-    }
 }
 
 /* Modal styles (from previous updates) */
