@@ -24,7 +24,7 @@ export default function Home() {
         <div className={styles.container}>
             <header className={styles.header}>
                 <div className={styles.logo}>
-                    <Image src="/tflogo.png" alt="thunder fusion logo" fill objectFit="contain" />
+                    <Image src="/tflogo-new-transparent.png" alt="thunder fusion logo" fill />
                 </div>
                 <nav className={styles.nav}>
                     <a
