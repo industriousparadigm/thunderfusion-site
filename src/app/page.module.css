@@ -29,7 +29,7 @@
 }
 
 .link,
-.link > * {
+.link>* {
   position: relative;
   font-size: 1.5rem;
   font-weight: bold;
@@ -47,7 +47,8 @@ a.link:hover * {
   position: absolute;
   width: 0;
   height: 3px;
-  top: calc(100% + 2px); /* 2px below the bottom of the link text */
+  top: calc(100% + 2px);
+  /* 2px below the bottom of the link text */
   left: 50%;
   background: linear-gradient(90deg, var(--pink), var(--cyan));
   transition: all 0.4s ease;
@@ -83,7 +84,8 @@ a.link:hover * {
 
 .showreelContainer {
   position: absolute;
-  bottom: 100px; /* push it further up from the bottom */
+  bottom: 100px;
+  /* push it further up from the bottom */
   left: 0;
   width: 100%;
   display: flex;
@@ -93,7 +95,8 @@ a.link:hover * {
 
 /* Overrides for the showreel link */
 .showreelLink {
-  font-size: 2.5rem; /* bigger than the nav links */
+  font-size: 2.5rem;
+  /* bigger than the nav links */
   font-weight: bold;
   /* Optionally change the font family if needed. For example: */
   font-family: var(--font-prata), serif;
@@ -102,10 +105,12 @@ a.link:hover * {
 }
 
 .showreelLink::before {
-  content: '\25B6'; /* Unicode for a play triangle */
+  content: '\25B6';
+  /* Unicode for a play triangle */
   display: inline-block;
   margin-right: 24px;
-  font-size: 0.825em; /* Adjust to taste */
+  font-size: 0.825em;
+  /* Adjust to taste */
   vertical-align: middle;
 }
 
@@ -125,8 +130,13 @@ a.link:hover * {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .modalContent {
@@ -239,24 +249,35 @@ a.link:hover * {
 
 /* For mobile devices */
 @media (max-width: 600px) {
+  .logo {
+    width: 130px;
+    height: 130px;
+  }
+
   .heroText {
     text-align: center;
   }
+
   .heroText h1 {
-    font-size: 4rem;    /* Reduce the company name size */
+    font-size: 4rem;
+    /* Reduce the company name size */
+    line-height: 4.5rem;
   }
 
   .heroText p {
-    font-size: 1.5rem;    /* Reduce the tagline size */
+    font-size: 1.5rem;
+    /* Reduce the tagline size */
   }
 
   .showreelLink {
-    font-size: 1.5rem;  /* Make the showreel link smaller */
+    font-size: 1.5rem;
+    /* Make the showreel link smaller */
     bottom: 10vh;
   }
 
   /* Optionally, adjust the showreel container position */
   .showreelContainer {
-    bottom: 40px; /* Bring it a bit lower if needed */
+    bottom: 40px;
+    /* Bring it a bit lower if needed */
   }
 }

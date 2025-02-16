@@ -11,7 +11,7 @@ const prata = Prata({
 const jost = Jost({
     variable: '--font-jost',
     subsets: ['latin'],
-    display: 'swap' // Optional for faster font rendering
+    display: 'swap'
 })
 
 const permanentMarker = Permanent_Marker({
@@ -21,33 +21,10 @@ const permanentMarker = Permanent_Marker({
 })
 
 export const metadata: Metadata = {
-    title: "Thunder Fusion - Empowering Humanitarian Narratives",
-    description: "Partnering with NGOs to create compelling media that drives social change.",
-    keywords: ["digital media agency", "humanitarian media", "NGO partnerships", "social impact storytelling"],
-    // openGraph: {
-    //   title: "Thunder Fusion - Empowering Humanitarian Narratives",
-    //   description: "Partnering with NGOs to create compelling media that drives social change.",
-    //   url: "https://thunderfusion.com",
-    //   siteName: "Thunder Fusion",
-    //   images: [
-    //     {
-    //       url: "/og-image.jpg",
-    //       width: 1200,
-    //       height: 630,
-    //       alt: "Empowering Humanitarian Narratives",
-    //     },
-    //   ],
-    //   type: "website",
-    //   locale: "en_US",
-    // },
-    // twitter: {
-    //   card: "summary_large_image",
-    //   title: "Thunder Fusion - Empowering Humanitarian Narratives",
-    //   description: "Partnering with NGOs to create compelling media that drives social change.",
-    //   images: ["/twitter-image.jpg"],
-    //   creator: "@mrsalvini",
-    // },
-  }
+    title: 'Thunder Fusion - Empowering Humanitarian Narratives',
+    description: 'Partnering with NGOs to create compelling media that drives social change.',
+    keywords: ['digital media agency', 'humanitarian media', 'NGO partnerships', 'social impact storytelling']
+}
 
 export default function RootLayout({
     children

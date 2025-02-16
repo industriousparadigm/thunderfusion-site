@@ -73,16 +73,17 @@ export default function Home() {
                 <section className={styles.aboutSection}>
                     <h2>We capture the stories to turn missions into impact</h2>
                     <p>
-                        Cheers! We are THUNDER FUSION, a Creative Consultancy agency specializing in <strong>humanitarian
-                        storytelling</strong> and impactful media solutions.
+                        Cheers! We are THUNDER FUSION, a Creative Consultancy agency specializing in{' '}
+                        <strong>humanitarian storytelling</strong> and impactful media solutions.
                     </p>
                     <p>
                         We craft humane, dignified, and unique content for international organizations and local
                         enterprises alike, ensuring your message resonates with clarity and purpose.
                     </p>
                     <p>
-                        From <strong>graphic design</strong>, <strong>reports</strong>, and <strong>copywriting</strong> to <strong>digital marketing consulting</strong>, <strong>communication
-                        strategy</strong>, and <strong>project management</strong>, we connect people, ideas, and creativity to amplify your
+                        From <strong>graphic design</strong>, <strong>reports</strong>, and <strong>copywriting</strong>{' '}
+                        to <strong>digital marketing consulting</strong>, <strong>communication strategy</strong>, and{' '}
+                        <strong>project management</strong>, we connect people, ideas, and creativity to amplify your
                         mission.
                     </p>
                     <p>
