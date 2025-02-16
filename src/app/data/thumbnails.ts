@@ -26,21 +26,21 @@ export const thumbnails: VideoPreviewThumbnail[] = [
         title: 'Introduction to Market Assessment',
         client: 'IFRC',
         src: 'https://img.youtube.com/vi/dOrI1kxhp5U/hqdefault.jpg',
-        alt: 'Thumbnail for Introduction to Market Assessment',
+        alt: 'Thumbnail for Market Assessment',
         videoId: 'dOrI1kxhp5U'
     },
     {
         title: 'IFPMA Interview Series: Innovation Ecosystem',
         client: 'International Federation of Pharmaceutical Manufacturers and Associations',
         src: 'https://img.youtube.com/vi/z7haT6I7P0Q/hqdefault.jpg',
-        alt: 'Thumbnail for Stakeholder Synergy',
+        alt: 'Thumbnail for IFPMA',
         videoId: 'z7haT6I7P0Q'
     },
     {
         title: 'Hepatitis C virus (HCV) Diagnosis',
         client: 'FIND',
         src: 'https://img.youtube.com/vi/MKV72jMMAg4/hqdefault.jpg',
-        alt: 'Thumbnail for Outcome-Oriented Monitoring',
+        alt: 'Thumbnail for FIND',
         videoId: 'MKV72jMMAg4'
     },
     {
@@ -51,7 +51,7 @@ export const thumbnails: VideoPreviewThumbnail[] = [
         videoId: 'JTDACGcvE9M'
     },
     {
-        title: 'Youth Empowerment Fund ',
+        title: 'Youth Empowerment Fund',
         client: 'Global Youth Mobilazation / European Union',
         src: 'https://img.youtube.com/vi/6T9ezrP-u5Q/hqdefault.jpg',
         alt: 'Thumbnail for YEF',
@@ -82,28 +82,28 @@ export const thumbnails: VideoPreviewThumbnail[] = [
         title: 'World Red Cross and Red Crescent Day 2017',
         client: 'IFRC / ICRC',
         src: 'https://img.youtube.com/vi/e20LQLgzOYg/hqdefault.jpg',
-        alt: 'Thumbnail for World Red Cross Day',
+        alt: 'Thumbnail for IFRC ICRC',
         videoId: 'e20LQLgzOYg'
     },
     {
-        title: 'World Red Cross and Red Crescent Day 2017',
-        client: 'IFRC / ICRC',
+        title: 'World Humanitarian Forum: New York Summit 2020',
+        client: 'WHF',
         src: 'https://img.youtube.com/vi/ZzFgD3o0oX8/hqdefault.jpg',
-        alt: 'Thumbnail for World Red Cross Day',
+        alt: 'Thumbnail for WHF',
         videoId: 'ZzFgD3o0oX8'
     },
     {
         title: 'Professional Profile Interview',
         client: 'Damien Naylor',
         src: 'https://img.youtube.com/vi/iZMcDp8dC5A/hqdefault.jpg',
-        alt: 'Thumbnail for Last Mile',
+        alt: 'Thumbnail for Damien Naylor',
         videoId: 'iZMcDp8dC5A'
     },
     {
         title: 'Fitness Profile',
         client: 'Fitness Hut',
         src: 'https://img.youtube.com/vi/6Uo5pZdJfB0/hqdefault.jpg',
-        alt: 'Thumbnail for Stakeholder Synergy',
+        alt: 'Thumbnail for Fitness',
         videoId: '6Uo5pZdJfB0'
     }
 ]
