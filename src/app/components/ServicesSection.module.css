@@ -1,0 +1,176 @@
+.servicesSection {
+  padding: 100px 40px;
+  background: var(--white-overlay);
+  position: relative;
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionHeader h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--black);
+}
+
+.sectionHeader p {
+  font-size: 1.5rem;
+  color: var(--gray-dark);
+}
+
+.servicesWrapper {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.mobileGrid {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  gap: 20px;
+  padding: 0 20px;
+}
+
+.mobileGrid::-webkit-scrollbar {
+  display: none;
+}
+
+.serviceCard {
+  background: white;
+  border-radius: 16px;
+  padding: 40px 30px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--gray-light);
+  transition: all 0.3s ease;
+}
+
+.mobileGrid .serviceCard {
+  flex: 0 0 85%;
+  scroll-snap-align: center;
+}
+
+.serviceCard:hover {
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.iconWrapper {
+  font-size: 3rem;
+  color: var(--pink);
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+.serviceCard h3 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+  color: var(--black);
+}
+
+.serviceCard p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: var(--gray-dark);
+}
+
+.features {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  text-align: left;
+}
+
+.features li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  color: var(--gray-dark);
+  font-size: 1rem;
+}
+
+.features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
+  font-weight: bold;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--pink);
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-light);
+}
+
+.scrollButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--black);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.scrollButton:hover {
+  background: var(--pink);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.scrollButtonLeft {
+  left: -20px;
+}
+
+.scrollButtonRight {
+  right: -20px;
+}
+
+@media (max-width: 768px) {
+  .servicesSection {
+    padding: 60px 0;
+    overflow: hidden;
+  }
+  
+  .sectionHeader {
+    padding: 0 20px;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+  
+  .servicesWrapper {
+    margin: 0;
+  }
+  
+  .serviceCard {
+    min-height: 400px;
+  }
+}

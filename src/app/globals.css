@@ -1,13 +1,19 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --pink: #feaeb5;
-  --cyan: #bee8fa;
-  --black: #1a232e;
-  --gray: #e0e1e1;
-  --blue: #83a7ca;
+  --pink: #e91e63;  /* Stronger pink for better contrast */
+  --pink-light: #feaeb5;
+  --cyan: #00bcd4;  /* Stronger cyan for better contrast */
+  --cyan-light: #bee8fa;
+  --black: #0a0f14;  /* Darker black */
+  --black-soft: #1a232e;
+  --gray: #9e9e9e;  /* Mid-gray with better contrast */
+  --gray-light: #e0e1e1;
+  --gray-dark: #616161;
+  --blue: #2196f3;  /* Stronger blue */
+  --blue-dark: #547287;
   --salmon: #e48683;
-  --darkblue: #547287;
+  --white-overlay: rgba(255, 255, 255, 0.95);
 }
 
 html,
@@ -43,6 +49,11 @@ h5,
 h6 {
   font-family: var(--font-prata), serif;
   color: var(--pink)
+}
+
+/* Smooth scrolling with offset for fixed header */
+section {
+  scroll-margin-top: 80px;
 }
 
 h2 {

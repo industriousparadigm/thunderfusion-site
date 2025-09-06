@@ -1,12 +1,17 @@
 'use client'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import styles from './page.module.css'
-import Image from 'next/image'
 import WorkGrid from './components/WorkGrid'
-import ContactSection from './components/ContactSection'
+import ContactForm from './components/ContactForm'
+import Testimonials from './components/Testimonials'
+import ServicesSection from './components/ServicesSection'
+import AboutSection from './components/AboutSection'
+import Header from './components/Header'
+import { motion } from 'framer-motion'
 
 export default function Home() {
     const [selectedVideo, setSelectedVideo] = useState<string | null>(null)
+    const [particles, setParticles] = useState<Array<{ id: number; size: number; left: number; delay: number }>>([])
 
     const handleScroll = useCallback((id: string) => {
         const section = document.getElementById(id)
@@ -20,42 +25,52 @@ export default function Home() {
         setSelectedVideo('pRLBLh7OBpA')
     }
 
+    // Generate random particles
+    useEffect(() => {
+        const newParticles = Array.from({ length: 15 }, (_, i) => ({
+            id: i,
+            size: Math.random() * 60 + 20,
+            left: Math.random() * 100,
+            delay: Math.random() * 20
+        }))
+        setParticles(newParticles)
+    }, [])
+
     return (
         <div className={styles.container}>
-            <header className={styles.header}>
-                <div className={styles.logo}>
-                    <Image src="/tflogo-new-transparent.png" alt="thunder fusion logo" fill />
-                </div>
-                <nav className={styles.nav}>
-                    <a
-                        onClick={(e) => {
-                            e.preventDefault()
-                            handleScroll('work')
-                        }}
-                        className={styles.link}
-                        href="#work"
-                    >
-                        <h6>work</h6>
-                    </a>
-                    <a
-                        onClick={(e) => {
-                            e.preventDefault()
-                            handleScroll('contact')
-                        }}
-                        className={styles.link}
-                        href="#contact"
-                    >
-                        <h6>contact</h6>
-                    </a>
-                </nav>
-            </header>
+            <Header handleScroll={handleScroll} />
 
             <main>
                 <section className={styles.heroSection}>
-                    <div className={styles.heroText}>
-                        <h1>Thunder Fusion</h1>
-                        <p>Bold filmmaking with a human purpose</p>
+                    <div className={styles.particles}>
+                        {particles.map((particle) => (
+                            <div
+                                key={particle.id}
+                                className={styles.particle}
+                                style={{
+                                    width: `${particle.size}px`,
+                                    height: `${particle.size}px`,
+                                    left: `${particle.left}%`,
+                                    animationDelay: `${particle.delay}s`
+                                }}
+                            />
+                        ))}
                     </div>
+                    <motion.div 
+                        className={styles.heroText}
+                        initial={{ opacity: 0, y: 50 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                    >
+                        <h1 data-text="Thunder Fusion">Thunder Fusion</h1>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 1, delay: 1 }}
+                        >
+                            Bold filmmaking with a human purpose
+                        </motion.p>
+                    </motion.div>
                     <div className={styles.showreelContainer}>
                         <a
                             className={`${styles.link} ${styles.showreelLink}`}
@@ -70,8 +85,21 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className={styles.aboutSection}>
-                    <h2>We capture the stories to turn missions into impact</h2>
+                <motion.section 
+                    className={styles.aboutSection}
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
+                    viewport={{ once: true }}
+                >
+                    <motion.h2
+                        initial={{ y: 50 }}
+                        whileInView={{ y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                    >
+                        We capture the stories to turn missions into impact
+                    </motion.h2>
                     <p>
                         Cheers! We are THUNDER FUSION, a Creative Consultancy agency specializing in{' '}
                         <strong>humanitarian storytelling</strong> and impactful media solutions.
@@ -90,14 +118,20 @@ export default function Home() {
                         Your mission is the spark that drives our creation. By linking people, purpose, and creativity,
                         your content will inspire action and amplify impact.
                     </p>
-                </section>
+                </motion.section>
+
+                <ServicesSection />
+                
+                <AboutSection />
 
                 <section id="work" className={styles.workSection}>
                     <WorkGrid setSelectedVideo={setSelectedVideo} />
                 </section>
 
+                <Testimonials />
+
                 <section id="contact" className={styles.contactSection}>
-                    <ContactSection />
+                    <ContactForm />
                 </section>
             </main>
 
@@ -108,10 +142,11 @@ export default function Home() {
                     </button>
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                         <iframe
-                            src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1`}
+                            src={`https://www.youtube.com/embed/${selectedVideo}?autoplay=1&modestbranding=1&rel=0`}
                             title="YouTube video player"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                             allowFullScreen
+                            loading="lazy"
                         />
                     </div>
                 </div>

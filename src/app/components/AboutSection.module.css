@@ -1,0 +1,169 @@
+.aboutSection {
+  padding: 100px 40px;
+  background: linear-gradient(to bottom, var(--gray-light), white);
+}
+
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.sectionHeader h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: var(--black);
+}
+
+.sectionHeader p {
+  font-size: 1.5rem;
+  color: var(--gray-dark);
+}
+
+.storyContent {
+  max-width: 1200px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.textBlock h3 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: var(--black);
+}
+
+.textBlock p {
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: var(--gray-dark);
+}
+
+.founderCard {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--gray-light);
+}
+
+.founderCard h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: var(--black);
+}
+
+.role {
+  font-size: 1.2rem;
+  color: var(--pink);
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.bio {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color: var(--gray-dark);
+}
+
+.contactInfo {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.contactLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: var(--black);
+  border-radius: 25px;
+  color: white;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.contactLink:hover {
+  background: var(--pink);
+  transform: translateY(-2px);
+}
+
+.valuesSection {
+  text-align: center;
+}
+
+.valuesSection h3 {
+  font-size: 2.5rem;
+  margin-bottom: 50px;
+  color: var(--black);
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.valueCard {
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--gray-light);
+  transition: all 0.3s ease;
+}
+
+.valueCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.valueIcon {
+  font-size: 3rem;
+  color: var(--cyan);
+  margin-bottom: 20px;
+}
+
+.valueCard h4 {
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  color: var(--black);
+}
+
+.valueCard p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--gray-dark);
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    padding: 60px 20px;
+  }
+  
+  .sectionHeader h2 {
+    font-size: 2rem;
+  }
+  
+  .storyContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .contactInfo {
+    flex-direction: column;
+  }
+}

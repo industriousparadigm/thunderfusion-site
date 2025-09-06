@@ -6,80 +6,78 @@
   scroll-behavior: smooth;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  padding: 20px;
-  position: absolute;
-  width: 100%;
-  z-index: 10;
-}
-
-.logo {
-  position: relative;
-  /* Required for the Image fill prop */
-  width: 225px;
-  height: 225px;
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.link,
-.link>* {
-  position: relative;
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: var(--pink);
-  transition: color 0.3s ease;
-}
-
-a.link:hover,
-a.link:hover * {
-  color: var(--cyan);
-}
-
-.link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 3px;
-  top: calc(100% + 2px);
-  /* 2px below the bottom of the link text */
-  left: 50%;
-  background: linear-gradient(90deg, var(--pink), var(--cyan));
-  transition: all 0.4s ease;
-  transform: translateX(-50%);
-}
-
-.link:hover::after {
-  width: 100%;
-}
-
 .heroSection {
   position: relative;
-  background-image: url('/bg-tiles-weird.png');
-  background-size: cover;
-  background-position: center;
-  height: 100vh;
+  background: linear-gradient(135deg, #1a232e 0%, #547287 50%, #feaeb5 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   padding-left: 5vw;
   color: white;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .heroSection::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background-image: url('/bg-tiles-weird.png');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  mix-blend-mode: overlay;
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(254, 174, 181, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: floatParticle 20s infinite linear;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 .heroText {
   position: relative;
+  z-index: 2;
 }
 
 .showreelContainer {
@@ -96,12 +94,27 @@ a.link:hover * {
 /* Overrides for the showreel link */
 .showreelLink {
   font-size: 2.5rem;
-  /* bigger than the nav links */
   font-weight: bold;
-  /* Optionally change the font family if needed. For example: */
   font-family: var(--font-prata), serif;
-  /* If your nav links already use the desired font, you can omit this */
-  /* Remove extra padding or margins if necessary */
+  animation: pulse 2s infinite;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.showreelLink:hover {
+  transform: scale(1.1);
+  text-shadow: 0 0 20px rgba(254, 174, 181, 0.8);
 }
 
 .showreelLink::before {
@@ -173,18 +186,97 @@ a.link:hover * {
 
 .heroText h1 {
   font-family: var(--font-permanent-marker), cursive;
-  /* fallback font if needed */
-  /* Optionally, add other styling such as font-size, color, etc. */
   font-size: 6rem;
   letter-spacing: 4px;
+  position: relative;
+  display: inline-block;
+  animation: glitchText 3s infinite;
+  color: white;
+}
+
+@keyframes glitchText {
+  0%, 100% {
+    text-shadow: 
+      0 0 2px rgba(254, 174, 181, 0.8),
+      0 0 4px rgba(254, 174, 181, 0.8),
+      0 0 8px rgba(254, 174, 181, 0.8);
+  }
+  50% {
+    text-shadow: 
+      2px 2px 2px rgba(190, 232, 250, 0.8),
+      -2px -2px 2px rgba(254, 174, 181, 0.8),
+      0 0 20px rgba(254, 174, 181, 0.5);
+  }
+}
+
+.heroText h1::before,
+.heroText h1::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.heroText h1::before {
+  animation: glitch1 0.5s infinite;
+  color: var(--cyan);
+  z-index: -1;
+}
+
+.heroText h1::after {
+  animation: glitch2 0.5s infinite;
+  color: var(--pink);
+  z-index: -2;
+}
+
+@keyframes glitch1 {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  20% {
+    clip-path: inset(20% 0 60% 0);
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    clip-path: inset(50% 0 20% 0);
+    transform: translate(2px, -2px);
+  }
+  60% {
+    clip-path: inset(80% 0 0 0);
+    transform: translate(-1px, 1px);
+  }
+}
+
+@keyframes glitch2 {
+  0%, 100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  30% {
+    clip-path: inset(70% 0 10% 0);
+    transform: translate(1px, -1px);
+  }
+  50% {
+    clip-path: inset(10% 0 70% 0);
+    transform: translate(-1px, 2px);
+  }
+  70% {
+    clip-path: inset(40% 0 40% 0);
+    transform: translate(2px, 1px);
+  }
 }
 
 .heroText p {
   font-size: 1.75rem;
+  color: var(--gray-light);
 }
 
 .aboutSection {
-  background-color: var(--black);
+  background-color: var(--black-soft);
   padding: 64px 16px;
   text-align: center;
   color: white;
@@ -193,6 +285,7 @@ a.link:hover * {
 .aboutSection h2 {
   font-size: 2.5rem;
   margin-bottom: 48px;
+  color: var(--pink-light);
 }
 
 .aboutSection p {
@@ -210,24 +303,22 @@ a.link:hover * {
 }
 
 .workSection {
-  background-color: var(--black);
+  background-color: var(--black-soft);
   color: white;
-  /* padding: 80px 0; */
-  /* Increased padding for better spacing */
+  padding-top: 60px;
+  padding-bottom: 80px;
   display: block;
-  /* Change from flex to block to allow full-width content */
 }
 
 .contactSection {
   position: relative;
-  /* so that the inner block can be absolutely positioned */
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 20px;
-  background-color: var(--cyan);
+  padding: 80px 20px;
+  background: linear-gradient(135deg, var(--black) 0%, var(--black-soft) 100%);
   color: white;
 }
 
@@ -245,23 +336,26 @@ a.link:hover * {
   justify-content: center;
   align-items: center;
   color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.gridItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 /* For mobile devices */
 @media (max-width: 600px) {
-  .logo {
-    width: 130px;
-    height: 130px;
-  }
 
   .heroText {
     text-align: center;
   }
 
   .heroText h1 {
-    font-size: 4rem;
+    font-size: 3.5rem;
     /* Reduce the company name size */
-    line-height: 4.5rem;
+    line-height: 4rem;
   }
 
   .heroText p {
