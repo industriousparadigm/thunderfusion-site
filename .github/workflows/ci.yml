@@ -5,6 +5,11 @@ on:
         branches: [main]
     pull_request:
 
+# Restrict the default token to read-only; lighthouse comment posting needs
+# only the GitHub App token, not GITHUB_TOKEN write access.
+permissions:
+    contents: read
+
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
     cancel-in-progress: true
@@ -14,15 +19,18 @@ jobs:
         name: lint · typecheck · test · build
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            # Actions pinned to commit SHAs (with version comment) to prevent
+            # supply-chain attacks via tag retargeting. Dependabot keeps these
+            # current; see .github/dependabot.yml.
+            - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+            - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
               with:
                   node-version: 20
                   cache: npm
             - run: npm ci
             - run: npm run lint
             - run: npm run typecheck
-            - run: npm test
+            - run: npm test -- --reporter=verbose
             - run: npm run build
 
     lighthouse:
@@ -30,14 +38,16 @@ jobs:
         runs-on: ubuntu-latest
         needs: quality
         steps:
-            - uses: actions/checkout@v4
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+            - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
               with:
                   node-version: 20
                   cache: npm
             - run: npm ci
             - run: npm run build
             - name: Run Lighthouse CI
-              run: npx --yes @lhci/cli@0.14.x autorun
+              # Pinned exact version (not floating @0.14.x) to prevent a
+              # malicious patch release executing with LHCI token in scope.
+              run: npx --yes @lhci/cli@0.14.0 autorun
               env:
                   LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}

@@ -1,164 +1,158 @@
-# Thunder Fusion Site - Development Guide
+# Thunder Fusion Site — agent / contributor guide
 
-## Overview
-Thunder Fusion is a single-page scrolling website for a creative consultancy specializing in humanitarian storytelling and video production. Built with modern web technologies for optimal performance and user experience.
+Single-page marketing site for Thunder Fusion (creative + engineering studio).
+Static, no auth, no DB, no backend. Deploys on Vercel from `main`.
 
-## Tech Stack
-- **Framework**: Next.js 15.1.6 with App Router
-- **Language**: TypeScript (strict mode)
-- **Styling**: CSS Modules with custom properties
-- **Animations**: Framer Motion
-- **Forms**: React Hook Form with validation
-- **Analytics**: Vercel Analytics + Google Analytics
-- **Email**: Nodemailer (contact form backend)
-- **Icons**: React Icons
+## Stack
+
+- **Next.js 16** (App Router, Turbopack dev)
+- **React 19**
+- **Framer Motion 12** for scroll-driven animations
+- **CSS Modules** (no Tailwind) + design tokens in `globals.css`
+- **Vitest 4 + happy-dom + @testing-library/react** for tests (sub-second)
+- **ESLint 9 (flat config)** + **typescript-eslint** + **@next/eslint-plugin-next**
+- **Lighthouse CI** in GitHub Actions
+- **Vercel Analytics** + optional Google Analytics
 
 ## Commands
+
 ```bash
-npm run dev      # Start development server with Turbopack
-npm run build    # Build for production
-npm run start    # Start production server
-npm run lint     # Run ESLint
+npm run dev          # start dev server (turbopack)
+npm run build        # production build
+npm run start        # serve production build locally
+npm run lint         # eslint .
+npm run typecheck    # tsc --noEmit
+npm test             # vitest run (one-shot)
+npm run test:watch   # vitest watch mode
 ```
 
-## Project Structure
+## Where things live
+
 ```
 src/app/
-├── page.tsx              # Home page with hero, about, work grid, testimonials, contact
-├── layout.tsx            # Root layout with fonts and metadata
-├── globals.css           # Global styles and CSS variables
-├── services/             # Services page with packages
-├── about/                # About page with team info
-├── api/contact/          # Contact form API endpoint
-├── components/
-│   ├── WorkGrid          # Video portfolio grid with lazy loading
-│   ├── ContactForm       # Contact form with validation
-│   ├── Testimonials      # Client testimonials carousel
-│   └── Analytics         # Google Analytics component
-└── data/
-    └── thumbnails.ts     # Video portfolio data
+├── page.tsx              # ~22-line orchestrator: composes the sections
+├── page.module.css       # only the page-root container
+├── layout.tsx            # fonts, metadata, viewport, JSON-LD
+├── globals.css           # design tokens (--pink, --cyan, ...) + global resets
+├── data/                 # all content. Edit these to update copy/work/founders.
+│   ├── thumbnails.ts     # full film library (videoId, title, client, src, alt)
+│   ├── films.ts          # featured films (curated by videoId, not slice)
+│   ├── clients.ts        # marquee org names
+│   ├── software.ts       # featured product + supporting items
+│   ├── studio.ts         # founders (Mariana, Diogo) + accents + links
+│   └── copy.ts           # hero, section headers, contact CTAs, footer
+├── lib/
+│   └── animations.ts     # shared EASE tuple + framer-motion variants
+└── components/           # one .tsx + one .module.css per section
+    ├── Header.tsx                  # sticky transparent-to-solid nav
+    ├── Hero.tsx                    # tagline + showreel CTA (opens modal)
+    ├── Marquee.tsx                 # single pink band of client names
+    ├── Films.tsx                   # editorial list of featured films
+    ├── Software.tsx                # pink slab, featured product + items
+    ├── Studio.tsx                  # two-founder block with giant initials
+    ├── Contact.tsx                 # two mailto cards routed to hi@
+    ├── Footer.tsx
+    ├── SectionHeader.tsx           # shared "01 Title meta" component
+    ├── VideoModal.tsx              # a11y-correct modal + context provider
+    └── Analytics.tsx               # GA + Vercel Analytics
 ```
 
-## Key Features
-### Visual & UX
-- ✅ Animated gradient hero with particle effects
-- ✅ Glitch text animation on hero title
-- ✅ Transparent header that animates to solid on scroll
-- ✅ Smooth scroll single-page navigation
-- ✅ Mobile hamburger menu with slide-in navigation
-- ✅ Swipeable service cards on mobile
-- ✅ Touch-enabled testimonials carousel
-- ✅ Video grid with subtle hover effects
-- ✅ Modal video player with YouTube embeds
-- ✅ Lazy loading with skeleton screens
+## Common edits
 
-### Technical
-- ✅ SEO optimization (meta tags, Open Graph, sitemap, robots.txt)
-- ✅ Google Analytics + Vercel Analytics
-- ✅ Contact form with email backend
-- ✅ Responsive design with mobile-first approach
-- ✅ Optimized YouTube thumbnail loading (i.ytimg.com)
-- ✅ TypeScript strict mode
-- ✅ All lint checks passing
+| To change… | Edit |
+|---|---|
+| Hero tagline / subtitle / CTA label | `src/app/data/copy.ts` |
+| Section headers (number/title/meta) | `src/app/data/copy.ts` → `sectionHeaders` |
+| Featured films on the home page | `src/app/data/films.ts` (`FEATURED_VIDEO_IDS`) |
+| Add a film to the library | `src/app/data/thumbnails.ts` |
+| Marquee client list | `src/app/data/clients.ts` |
+| Featured software / Brainwave copy | `src/app/data/software.ts` |
+| Founder bios / links / accents | `src/app/data/studio.ts` |
+| Contact CTA text + subjects | `src/app/data/copy.ts` → `contactCtas` |
+| Color tokens (pink, cyan, ...) | `src/app/globals.css` `:root` |
+| A section's styles | `src/app/components/<Name>.module.css` |
+| Motion timing / easing | `src/app/lib/animations.ts` |
+| SEO metadata / OG tags | `src/app/layout.tsx` |
+| Site-wide JSON-LD (Organization) | `src/app/layout.tsx` → `organizationJsonLd` |
 
-## Environment Variables
-Create a `.env.local` file with:
-```env
-# Google Analytics
-NEXT_PUBLIC_GA_ID=your-ga-id
+## Conventions
 
-# Email Configuration (for contact form)
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
+- **Data, not components**, holds copy. Edit `data/*.ts` to update text.
+- **Co-located CSS Modules.** Each `Foo.tsx` has a sibling `Foo.module.css`.
+- **No `!important`.** If you need it, the selector is wrong.
+- **Enumerated transitions only.** No `transition: all` — list the properties.
+- **`prefers-reduced-motion`** is respected. New animations must add a reduced-motion fallback.
+- **Focus-visible outlines** on every interactive element using `var(--cyan)`.
+- **Nav uses real anchors** + native `scroll-behavior: smooth`. No JS scroll handlers.
+- **Section IDs** match nav labels exactly: `#films`, `#software`, `#studio`, `#contact`.
 
-# Optional
-NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION=your-verification-code
+## Non-negotiable: privacy-first contact
+
+The site **must not expose personal email addresses** in source.
+All CTAs route to `hi@thunderfusion.pt` with prefilled subjects.
+This is asserted by `src/app/page.test.tsx` ("never exposes personal addresses…")
+which checks both raw and URL-encoded forms across the entire rendered HTML
+(including the JSON-LD in `layout.tsx`). If a test fails here, the regression
+is a privacy bug — fix the code, not the test.
+
+## VideoModal (a11y contract)
+
+`<VideoModalProvider>` lives at the page root. Anything inside can call
+`useVideoModal().open(videoId)` to play a film. The modal:
+
+- traps focus between the close button and the iframe (Tab cycles)
+- closes on **Escape**
+- restores focus to the trigger on close
+- locks body scroll while open
+- has `aria-modal="true"` + `aria-labelledby` to a visually-hidden title
+- validates `videoId` against `^[A-Za-z0-9_-]{11}$` (YouTube ID shape)
+- iframe is sandboxed (`allow-scripts allow-same-origin allow-presentation`)
+
+Don't change the modal without adding tests. The existing tests in
+`page.test.tsx` cover all of the above.
+
+## Design tokens
+
+```
+--pink:       #feaeb5   /* pale rose — the brand color, matches the logo */
+--pink-light: #ffd4d8   /* hover highlight on dark */
+--pink-deep:  #e91e63   /* reserved for moments needing extra pop (unused by default) */
+--cyan:       #00bcd4   /* contrast accent, focus outlines, hover states */
+--cyan-light: #bee8fa
+--black:      #0a0f14   /* page background */
+--black-soft: #1a232e   /* card surfaces */
 ```
 
-## Design System
-### Color Palette (Enhanced for Contrast)
-- **Primary Pink**: `#e91e63` (strong)
-- **Pink Light**: `#feaeb5` (accents)
-- **Primary Cyan**: `#00bcd4` (strong)
-- **Cyan Light**: `#bee8fa` (accents)
-- **Black**: `#0a0f14` (darkest)
-- **Black Soft**: `#1a232e` (backgrounds)
-- **Gray**: `#9e9e9e` (text)
-- **Gray Light**: `#e0e1e1` (borders)
-- **Gray Dark**: `#616161` (strong text)
-- **Blue**: `#2196f3` (links)
-- **Blue Dark**: `#547287` (accents)
+`--pink-rgb` and `--cyan-rgb` exist for `rgba()` use (`rgba(var(--pink-rgb), 0.3)`).
 
-### Typography
-- **Headings**: Prata (serif)
-- **Body**: Jost (sans-serif)
-- **Hero**: Permanent Marker (display)
+## Testing
 
-### Breakpoints
-- Mobile: <= 768px
-- Tablet: 769px - 1024px
-- Desktop: > 1024px
+`src/app/page.test.tsx` is the single integration test file. It covers
+rendering, anchor IDs, the privacy-first email contract, the showreel and
+film modal flows, and a11y attributes. Tests run in <1s on happy-dom.
 
-## Fonts
-- **Headings**: Prata (serif)
-- **Body**: Jost (sans-serif)
-- **Hero**: Permanent Marker (display)
+`vitest.setup.ts` stubs `IntersectionObserver` (for framer-motion's
+`whileInView`), `scrollIntoView`, and `fetch` (so happy-dom iframes don't
+emit cleanup noise).
 
-## Code Conventions
-- Use TypeScript strict mode
-- CSS Modules for component styles
-- Framer Motion for animations
-- Keep components in separate files
-- Use semantic HTML
-- Follow existing patterns
+The CI workflow runs lint → typecheck → test → build, then runs Lighthouse
+in a separate job. Lighthouse hard-errors on accessibility <0.9 and SEO <0.95.
 
-## Adding New Videos
-Edit `src/app/data/thumbnails.ts`:
-```typescript
-{
-    title: 'Video Title',
-    client: 'Client Name',
-    src: '/thumbnails/image.jpg', // or YouTube URL
-    alt: 'Description',
-    videoId: 'YouTubeVideoId'
-}
-```
+## Known gotchas
 
-## Deployment Notes
-- The site is optimized for Vercel deployment
-- Images should be optimized before upload
-- Contact form requires email configuration
-- Update sitemap URL in production
+- **npm rollup binary on macOS**: vitest's vite dep needs
+  `@rollup/rollup-darwin-arm64` which npm sometimes doesn't install
+  (known npm bug, several years old). If `npm test` fails with
+  "Cannot find module '@rollup/rollup-darwin-arm64'", run:
+  `npm install @rollup/rollup-darwin-arm64 --no-save`. CI on Linux is unaffected.
+- **eslint-config-next 16 + FlatCompat**: throws a circular-ref TypeError.
+  We wire `@next/eslint-plugin-next` + `typescript-eslint` directly in
+  `eslint.config.mjs` instead. Don't bring `eslint-config-next` back.
+- **`next lint` deprecated** in Next 16. The `lint` script calls `eslint .`
+  directly.
 
-## Mobile-Specific Features
-- Hamburger menu with overlay
-- Swipeable service cards with indicators
-- Touch gestures for testimonials
-- Optimized font sizes and spacing
-- Sticky header with reduced height
-- Horizontal scrolling for grids
+## Deployment
 
-## Performance Optimizations
-- Image lazy loading
-- YouTube thumbnail optimization
-- CSS Module tree shaking
-- Turbopack development
-- Optimized animations (GPU accelerated)
-
-## Common Development Tasks
-### Run Development Server
-```bash
-npm run dev
-```
-
-### Update Video Portfolio
-Edit `src/app/data/thumbnails.ts`
-
-### Modify Services
-Edit `src/app/components/ServicesSection.tsx`
-
-### Update Testimonials
-Edit `src/app/components/Testimonials.tsx`
-
-### Configure Email
-Set environment variables for Nodemailer in `.env.local`
+Vercel auto-deploys on push to `main`. The CI workflow runs in parallel.
+Lighthouse uses `temporary-public-storage` (no token needed); for PR comments,
+add `LHCI_GITHUB_APP_TOKEN` to repo secrets.

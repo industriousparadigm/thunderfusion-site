@@ -1,0 +1,20 @@
+version: 2
+updates:
+    # Keep GitHub Action SHA pins current.
+    - package-ecosystem: github-actions
+      directory: /
+      schedule:
+          interval: weekly
+      groups:
+          actions:
+              patterns: ['*']
+
+    # Keep npm deps current.
+    - package-ecosystem: npm
+      directory: /
+      schedule:
+          interval: weekly
+      groups:
+          # Group all minor/patch bumps into a single PR per week.
+          minor-and-patch:
+              update-types: [minor, patch]
