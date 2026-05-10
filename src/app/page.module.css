@@ -243,11 +243,6 @@
     color: rgba(10, 15, 20, 0.45);
 }
 
-.marqueeRowDark {
-    background: var(--black);
-    color: #e8eaed;
-}
-
 .marqueeTrack {
     display: flex;
     gap: 4rem;
@@ -256,21 +251,12 @@
 }
 
 .marqueeTrackForward {
-    animation: marqueeForward 50s linear infinite;
-}
-
-.marqueeTrackReverse {
-    animation: marqueeReverse 60s linear infinite;
+    animation: marqueeForward 80s linear infinite;
 }
 
 @keyframes marqueeForward {
     from { transform: translateX(0); }
     to { transform: translateX(-33.333%); }
-}
-
-@keyframes marqueeReverse {
-    from { transform: translateX(-33.333%); }
-    to { transform: translateX(0); }
 }
 
 .marqueeItem {
@@ -289,12 +275,8 @@
     font-size: 0.7em;
 }
 
-.marqueeRowDark .marqueeDot {
-    color: var(--cyan);
-}
-
 @media (prefers-reduced-motion: reduce) {
-    .marqueeTrackForward, .marqueeTrackReverse { animation-duration: 200s; }
+    .marqueeTrackForward { animation-duration: 300s; }
 }
 
 /* ===================================== */

@@ -24,9 +24,9 @@ export default function Header({ handleScroll }: HeaderProps) {
 
     const navItems = [
         { href: '#', label: 'home', onClick: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
-        { href: '#services', label: 'services', onClick: () => handleScroll('services') },
-        { href: '#about', label: 'about', onClick: () => handleScroll('about') },
-        { href: '#work', label: 'work', onClick: () => handleScroll('work') },
+        { href: '#films', label: 'films', onClick: () => handleScroll('films') },
+        { href: '#software', label: 'software', onClick: () => handleScroll('software') },
+        { href: '#studio', label: 'studio', onClick: () => handleScroll('studio') },
         { href: '#contact', label: 'contact', onClick: () => handleScroll('contact') }
     ]
 

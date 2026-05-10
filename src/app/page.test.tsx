@@ -23,7 +23,7 @@ describe('HomePage', () => {
 
     it('exposes the section anchors that the header navigates to', () => {
         const { container } = render(<HomePage />)
-        for (const id of ['work', 'services', 'about', 'contact']) {
+        for (const id of ['films', 'software', 'studio', 'contact']) {
             expect(container.querySelector(`#${id}`)).not.toBeNull()
         }
     })

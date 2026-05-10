@@ -24,17 +24,6 @@ const MARQUEE_CLIENTS = [
     'Football for Development'
 ]
 
-const MARQUEE_SOFTWARE = [
-    'Okra Solar',
-    'Brainwave',
-    'Route Reports',
-    'Trinny London',
-    'Stylist Magazine',
-    'AI-native engineering',
-    'Senior IC',
-    'Things that ship'
-]
-
 const heroLineVariants: Variants = {
     hidden: { opacity: 0, y: 36 },
     visible: (i: number) => ({
@@ -122,8 +111,8 @@ export default function HomeV2() {
                 </div>
             </section>
 
-            {/* MARQUEE */}
-            <section className={styles.marquee} aria-label="Selected work">
+            {/* MARQUEE — single slow band of recognizable clients */}
+            <section className={styles.marquee} aria-label="Selected clients">
                 <div className={`${styles.marqueeRow} ${styles.marqueeRowPink}`}>
                     <div className={`${styles.marqueeTrack} ${styles.marqueeTrackForward}`}>
                         {[...MARQUEE_CLIENTS, ...MARQUEE_CLIENTS, ...MARQUEE_CLIENTS].map((c, i) => (
@@ -136,22 +125,10 @@ export default function HomeV2() {
                         ))}
                     </div>
                 </div>
-                <div className={`${styles.marqueeRow} ${styles.marqueeRowDark}`}>
-                    <div className={`${styles.marqueeTrack} ${styles.marqueeTrackReverse}`}>
-                        {[...MARQUEE_SOFTWARE, ...MARQUEE_SOFTWARE, ...MARQUEE_SOFTWARE].map((c, i) => (
-                            <span key={i} className={styles.marqueeItem}>
-                                {c}
-                                <span className={styles.marqueeDot} aria-hidden>
-                                    ◆
-                                </span>
-                            </span>
-                        ))}
-                    </div>
-                </div>
             </section>
 
             {/* FILMS */}
-            <section id="work" className={styles.filmsSection}>
+            <section id="films" className={styles.filmsSection}>
                 <SectionHeader
                     number="01"
                     title="Films"
@@ -191,7 +168,7 @@ export default function HomeV2() {
             </section>
 
             {/* SOFTWARE — bold pink slab */}
-            <section id="services" className={styles.softwareSection}>
+            <section id="software" className={styles.softwareSection}>
                 <SectionHeader
                     number="02"
                     title="Software"
@@ -244,7 +221,7 @@ export default function HomeV2() {
             </section>
 
             {/* STUDIO */}
-            <section id="about" className={styles.studioSection}>
+            <section id="studio" className={styles.studioSection}>
                 <SectionHeader number="03" title="The studio" meta="Two founders. One studio." />
 
                 <div className={styles.studioGrid}>
