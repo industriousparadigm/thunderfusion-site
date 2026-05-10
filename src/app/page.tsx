@@ -218,7 +218,7 @@ export default function HomeV2() {
                     </div>
                     <div className={styles.softwareFeatureImage}>
                         <Image
-                            src="/products/brainwave.png"
+                            src="/products/brainwave.jpg"
                             alt="Brainwave — Okra Solar's natural-language analytics product"
                             width={1600}
                             height={1000}

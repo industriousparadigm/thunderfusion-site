@@ -1,5 +1,6 @@
-import type { Metadata } from 'next'
-import { Prata, Jost, Permanent_Marker } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import { Prata, Jost } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import Analytics from './components/Analytics'
 
@@ -13,12 +14,6 @@ const jost = Jost({
     variable: '--font-jost',
     subsets: ['latin'],
     display: 'swap'
-})
-
-const permanentMarker = Permanent_Marker({
-    weight: '400',
-    subsets: ['latin'],
-    variable: '--font-permanent-marker'
 })
 
 export const metadata: Metadata = {
@@ -44,6 +39,9 @@ export const metadata: Metadata = {
         telephone: false
     },
     metadataBase: new URL('https://thunderfusion.pt'),
+    alternates: {
+        canonical: '/'
+    },
     openGraph: {
         title: 'Thunder Fusion — Films and Software for Humanitarian Missions',
         description:
@@ -76,17 +74,59 @@ export const metadata: Metadata = {
             follow: true,
             'max-video-preview': -1,
             'max-image-preview': 'large',
-            'max-snippet': -1,
-        },
-    },
-    viewport: {
-        width: 'device-width',
-        initialScale: 1,
-        maximumScale: 1,
+            'max-snippet': -1
+        }
     },
     verification: {
-        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+        google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    }
+}
+
+export const viewport: Viewport = {
+    width: 'device-width',
+    initialScale: 1,
+    themeColor: '#0a0f14'
+}
+
+const organizationJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Thunder Fusion',
+    url: 'https://thunderfusion.pt',
+    logo: 'https://thunderfusion.pt/tflogo-new-transparent.png',
+    description:
+        'A creative and engineering studio producing humanitarian films and shipping product software for organizations working on missions that matter.',
+    foundingLocation: {
+        '@type': 'Place',
+        name: 'Matosinhos, Portugal'
     },
+    address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Matosinhos',
+        addressCountry: 'PT'
+    },
+    founder: [
+        { '@type': 'Person', name: 'Mariana Miragaia', jobTitle: 'Creative Director' },
+        { '@type': 'Person', name: 'Diogo Costa', jobTitle: 'Engineering Lead' }
+    ],
+    knowsAbout: [
+        'Humanitarian storytelling',
+        'Documentary filmmaking',
+        'Product engineering',
+        'AI-assisted development'
+    ],
+    contactPoint: [
+        {
+            '@type': 'ContactPoint',
+            email: 'mariana@thunderfusion.pt',
+            contactType: 'films and communications'
+        },
+        {
+            '@type': 'ContactPoint',
+            email: 'diogo@thunderfusion.pt',
+            contactType: 'software and engineering'
+        }
+    ]
 }
 
 export default function RootLayout({
@@ -96,7 +136,12 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${prata.variable} ${jost.variable} ${permanentMarker.variable}`}>
+            <body className={`${prata.variable} ${jost.variable}`}>
+                <Script
+                    id="organization-jsonld"
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+                />
                 {children}
                 <Analytics />
             </body>
