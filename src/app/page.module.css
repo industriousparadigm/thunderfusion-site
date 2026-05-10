@@ -26,7 +26,7 @@
     height: 70vw;
     max-width: 900px;
     max-height: 900px;
-    background: radial-gradient(circle, rgba(233, 30, 99, 0.18) 0%, rgba(233, 30, 99, 0) 60%);
+    background: radial-gradient(circle, rgba(var(--pink-rgb), 0.32) 0%, rgba(var(--pink-rgb), 0) 60%);
     pointer-events: none;
     z-index: 0;
     filter: blur(20px);
@@ -154,20 +154,19 @@
     height: 64px;
     border-radius: 50%;
     background: var(--pink);
-    color: white;
+    color: var(--black);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-size: 1.1rem;
     padding-left: 4px;
-    transition: background 0.2s, transform 0.3s ease;
-    box-shadow: 0 0 0 0 rgba(233, 30, 99, 0.5);
+    transition: background 0.2s, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 0 0 rgba(var(--pink-rgb), 0.5);
 }
 
 .heroCta:hover .heroCtaCircle {
-    background: #c2185b;
     transform: scale(1.05);
-    box-shadow: 0 0 0 12px rgba(233, 30, 99, 0.12);
+    box-shadow: 0 0 0 14px rgba(var(--pink-rgb), 0.18);
 }
 
 .heroCtaLabel {
@@ -237,7 +236,11 @@
 
 .marqueeRowPink {
     background: var(--pink);
-    color: #fff;
+    color: var(--black);
+}
+
+.marqueeRowPink .marqueeDot {
+    color: rgba(10, 15, 20, 0.45);
 }
 
 .marqueeRowDark {
@@ -327,7 +330,7 @@
 }
 
 .sectionHeaderLight .sectionNumber {
-    -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.35);
+    -webkit-text-stroke: 1.5px rgba(10, 15, 20, 0.4);
 }
 
 .sectionHeaderText {
@@ -345,7 +348,7 @@
 }
 
 .sectionHeaderLight .sectionTitle {
-    color: #ffffff;
+    color: var(--black);
 }
 
 .sectionMeta {
@@ -357,7 +360,7 @@
 }
 
 .sectionHeaderLight .sectionMeta {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(10, 15, 20, 0.7);
 }
 
 /* ===================================== */
@@ -440,7 +443,7 @@
 }
 
 .filmRow:hover .filmInfo h3 {
-    color: var(--pink-light);
+    color: #ffffff;
 }
 
 .filmInfo p {
@@ -528,7 +531,7 @@
 /* ===================================== */
 .softwareSection {
     background: var(--pink);
-    color: #ffffff;
+    color: var(--black);
     padding: 10rem 7vw;
     position: relative;
     overflow: hidden;
@@ -575,7 +578,7 @@
     font-size: 0.7rem;
     text-transform: uppercase;
     letter-spacing: 0.3em;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(10, 15, 20, 0.7);
     display: flex;
     align-items: center;
     gap: 0.6rem;
@@ -585,13 +588,13 @@
     content: '';
     width: 30px;
     height: 1px;
-    background: rgba(255, 255, 255, 0.6);
+    background: rgba(10, 15, 20, 0.5);
 }
 
 .softwareFeatureText h3 {
     font-family: var(--font-prata), serif;
     font-size: clamp(2rem, 4.5vw, 3.5rem);
-    color: #ffffff;
+    color: var(--black);
     line-height: 1;
     letter-spacing: -0.025em;
     font-weight: 400;
@@ -599,7 +602,7 @@
 
 .softwareFeatureText p {
     font-family: var(--font-jost), sans-serif;
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(10, 15, 20, 0.85);
     font-size: 1.05rem;
     line-height: 1.65;
     max-width: 50ch;
@@ -610,9 +613,9 @@
     border-radius: 8px;
     overflow: hidden;
     box-shadow:
-        0 30px 60px -20px rgba(0, 0, 0, 0.5),
-        0 0 0 1px rgba(255, 255, 255, 0.18),
-        0 0 60px -10px rgba(0, 188, 212, 0.35);
+        0 30px 60px -20px rgba(10, 15, 20, 0.35),
+        0 0 0 1px rgba(10, 15, 20, 0.12),
+        0 0 60px -10px rgba(var(--cyan-rgb), 0.45);
     transition: transform 0.6s ease, box-shadow 0.6s ease;
     transform: rotate(-0.6deg);
 }
@@ -620,9 +623,9 @@
 .softwareFeatureImage:hover {
     transform: rotate(0deg) scale(1.015);
     box-shadow:
-        0 40px 70px -20px rgba(0, 0, 0, 0.6),
-        0 0 0 1px rgba(255, 255, 255, 0.25),
-        0 0 80px -10px rgba(0, 188, 212, 0.5);
+        0 40px 70px -20px rgba(10, 15, 20, 0.45),
+        0 0 0 1px rgba(10, 15, 20, 0.18),
+        0 0 80px -10px rgba(var(--cyan-rgb), 0.6);
 }
 
 .softwareFeatureImage img {
@@ -636,14 +639,14 @@
     flex-direction: column;
     max-width: 1500px;
     margin: 0 auto;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 1px solid rgba(10, 15, 20, 0.18);
     position: relative;
     z-index: 1;
 }
 
 .softwareItem {
     padding: 3rem 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    border-bottom: 1px solid rgba(10, 15, 20, 0.18);
     display: grid;
     grid-template-columns: 1.4fr 1fr;
     gap: 4rem;
@@ -660,7 +663,7 @@
 .softwareItem h3 {
     font-family: var(--font-prata), serif;
     font-size: clamp(1.6rem, 3.5vw, 2.75rem);
-    color: #ffffff;
+    color: var(--black);
     line-height: 1.1;
     letter-spacing: -0.02em;
     font-weight: 400;
@@ -668,7 +671,7 @@
 
 .softwareOrg {
     font-style: italic;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(10, 15, 20, 0.6);
     font-size: 0.7em;
     display: inline-block;
     margin-left: 0.4rem;
@@ -676,7 +679,7 @@
 
 .softwareItem p {
     font-family: var(--font-jost), sans-serif;
-    color: rgba(255, 255, 255, 0.92);
+    color: rgba(10, 15, 20, 0.85);
     font-size: 1.05rem;
     line-height: 1.65;
     padding-top: 0.75rem;
@@ -860,14 +863,22 @@
 }
 
 .contactPink:hover .contactLabel {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(10, 15, 20, 0.7);
 }
 
 .contactCyan:hover .contactLabel {
     color: rgba(10, 15, 20, 0.7);
 }
 
-.contactEmail {
+.contactPink:hover .contactCta {
+    color: var(--black);
+}
+
+.contactPink:hover .contactArrow {
+    color: var(--black);
+}
+
+.contactCta {
     font-family: var(--font-prata), serif;
     font-size: clamp(1.4rem, 3vw, 2.25rem);
     color: #ffffff;
@@ -876,7 +887,7 @@
     transition: color 0.3s;
 }
 
-.contactCyan:hover .contactEmail {
+.contactCyan:hover .contactCta {
     color: var(--black);
 }
 

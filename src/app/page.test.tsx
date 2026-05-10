@@ -28,12 +28,15 @@ describe('HomePage', () => {
         }
     })
 
-    it('renders both founder mailto links with the right addresses', () => {
+    it('routes both contact CTAs to hi@thunderfusion.pt without exposing personal addresses', () => {
         render(<HomePage />)
-        const mariana = screen.getByRole('link', { name: /Films · Campaigns · Comms/i })
-        const diogo = screen.getByRole('link', { name: /Software · AI · Prototypes/i })
-        expect(mariana).toHaveAttribute('href', 'mailto:mariana@thunderfusion.pt')
-        expect(diogo).toHaveAttribute('href', 'mailto:diogo@thunderfusion.pt')
+        const films = screen.getByRole('link', { name: /Films · Campaigns · Comms/i })
+        const software = screen.getByRole('link', { name: /Software · AI · Prototypes/i })
+        expect(films.getAttribute('href')).toMatch(/^mailto:hi@thunderfusion\.pt\?subject=/)
+        expect(software.getAttribute('href')).toMatch(/^mailto:hi@thunderfusion\.pt\?subject=/)
+        // personal addresses must not appear anywhere on the page (anti-scrape)
+        expect(document.body.innerHTML).not.toContain('mariana@thunderfusion.pt')
+        expect(document.body.innerHTML).not.toContain('diogo@thunderfusion.pt')
     })
 
     it('renders the featured Brainwave product screenshot', () => {

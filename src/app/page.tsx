@@ -254,7 +254,7 @@ export default function HomeV2() {
                         role="Creative Director"
                         name="Mariana Miragaia"
                         body="Fifteen years producing humanitarian films and communication campaigns for the world's largest aid organizations. Leads field production and editorial direction."
-                        email="mariana@thunderfusion.pt"
+                        mailto="mailto:hi@thunderfusion.pt?subject=For%20Mariana"
                         linkedin="https://www.linkedin.com/in/mariana-miragaia-5244965b/"
                         delay={0}
                     />
@@ -264,8 +264,8 @@ export default function HomeV2() {
                         role="Engineering Lead"
                         name="Diogo Costa"
                         body="Senior product engineer. Currently at Okra Solar. Previously Route Reports, Trinny London, Stylist Magazine. Among the earliest practitioners of AI-native engineering."
-                        email="diogo@thunderfusion.pt"
-                        linkedin={null}
+                        mailto="mailto:hi@thunderfusion.pt?subject=For%20Diogo"
+                        linkedin="https://www.linkedin.com/in/diogosalvinicosta/"
                         delay={0.15}
                     />
                 </div>
@@ -277,7 +277,7 @@ export default function HomeV2() {
 
                 <div className={styles.contactSplit}>
                     <motion.a
-                        href="mailto:mariana@thunderfusion.pt"
+                        href="mailto:hi@thunderfusion.pt?subject=Films%2C%20campaigns%2C%20comms"
                         className={`${styles.contactCard} ${styles.contactPink}`}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -285,13 +285,13 @@ export default function HomeV2() {
                         transition={{ duration: 0.6 }}
                     >
                         <span className={styles.contactLabel}>Films · Campaigns · Comms</span>
-                        <span className={styles.contactEmail}>mariana@thunderfusion.pt</span>
+                        <span className={styles.contactCta}>Send a brief</span>
                         <span className={styles.contactArrow} aria-hidden>
                             ↗
                         </span>
                     </motion.a>
                     <motion.a
-                        href="mailto:diogo@thunderfusion.pt"
+                        href="mailto:hi@thunderfusion.pt?subject=Software%2C%20AI%2C%20prototypes"
                         className={`${styles.contactCard} ${styles.contactCyan}`}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -299,7 +299,7 @@ export default function HomeV2() {
                         transition={{ duration: 0.6, delay: 0.1 }}
                     >
                         <span className={styles.contactLabel}>Software · AI · Prototypes</span>
-                        <span className={styles.contactEmail}>diogo@thunderfusion.pt</span>
+                        <span className={styles.contactCta}>Pitch a project</span>
                         <span className={styles.contactArrow} aria-hidden>
                             ↗
                         </span>
@@ -412,7 +412,7 @@ function StudioCard({
     role,
     name,
     body,
-    email,
+    mailto,
     linkedin,
     delay
 }: {
@@ -421,7 +421,7 @@ function StudioCard({
     role: string
     name: string
     body: string
-    email: string
+    mailto: string
     linkedin: string | null
     delay: number
 }) {
@@ -444,7 +444,7 @@ function StudioCard({
                 <h3>{name}</h3>
                 <p className={styles.studioBody}>{body}</p>
                 <div className={styles.studioLinks}>
-                    <a href={`mailto:${email}`}>Email</a>
+                    <a href={mailto}>Email</a>
                     {linkedin && (
                         <a href={linkedin} target="_blank" rel="noopener noreferrer">
                             LinkedIn
