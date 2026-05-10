@@ -1,0 +1,60 @@
+.sectionHeader {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin: 0 auto 5rem;
+    max-width: 1500px;
+}
+
+@media (max-width: 768px) {
+    .sectionHeader {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+.sectionNumber {
+    font-family: var(--font-prata), serif;
+    font-size: clamp(7rem, 17vw, 14rem);
+    line-height: 0.85;
+    letter-spacing: -0.06em;
+    color: transparent;
+    -webkit-text-stroke: 1.5px #2a3440;
+    font-weight: 400;
+    display: inline-block;
+}
+
+.sectionHeaderLight .sectionNumber {
+    -webkit-text-stroke: 1.5px rgba(10, 15, 20, 0.4);
+}
+
+.sectionHeaderText {
+    padding-bottom: 1.5rem;
+}
+
+.sectionTitle {
+    font-family: var(--font-prata), serif;
+    color: #ffffff;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+    font-weight: 400;
+}
+
+.sectionHeaderLight .sectionTitle {
+    color: var(--black);
+}
+
+.sectionMeta {
+    font-family: var(--font-jost), sans-serif;
+    color: #8a939d;
+    font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+    max-width: 50ch;
+    line-height: 1.55;
+}
+
+.sectionHeaderLight .sectionMeta {
+    color: rgba(10, 15, 20, 0.7);
+}

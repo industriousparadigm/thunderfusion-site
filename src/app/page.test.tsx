@@ -12,13 +12,18 @@ vi.mock('next/image', () => ({
 }))
 
 import HomePage from './page'
+import { featuredFilms } from './data/films'
+import { founders } from './data/studio'
+import { contactCtas, hero } from './data/copy'
 
 describe('HomePage', () => {
-    it('renders the dual-pillar tagline', () => {
+    it('renders the dual-pillar tagline from the copy data file', () => {
         render(<HomePage />)
-        expect(screen.getByText(/We tell/i)).toBeInTheDocument()
-        expect(screen.getByText(/We build/i)).toBeInTheDocument()
-        expect(screen.getByText(/For missions/i)).toBeInTheDocument()
+        for (const line of hero.titleLines) {
+            const expected = `${line.lead}${line.accent}`.replace(/\s+/g, ' ').trim()
+            expect(document.body).toHaveTextContent(expected)
+        }
+        expect(document.body).toHaveTextContent(`${hero.closer.lead}${hero.closer.italic}`.trim())
     })
 
     it('exposes the section anchors that the header navigates to', () => {
@@ -28,39 +33,87 @@ describe('HomePage', () => {
         }
     })
 
-    it('routes both contact CTAs to hi@thunderfusion.pt without exposing personal addresses', () => {
+    it('routes both contact CTAs through hi@ without exposing personal addresses', () => {
         render(<HomePage />)
-        const films = screen.getByRole('link', { name: /Films · Campaigns · Comms/i })
-        const software = screen.getByRole('link', { name: /Software · AI · Prototypes/i })
-        expect(films.getAttribute('href')).toMatch(/^mailto:hi@thunderfusion\.pt\?subject=/)
-        expect(software.getAttribute('href')).toMatch(/^mailto:hi@thunderfusion\.pt\?subject=/)
-        // personal addresses must not appear anywhere on the page (anti-scrape)
-        expect(document.body.innerHTML).not.toContain('mariana@thunderfusion.pt')
-        expect(document.body.innerHTML).not.toContain('diogo@thunderfusion.pt')
+        for (const card of contactCtas) {
+            const link = screen.getByRole('link', { name: new RegExp(card.label, 'i') })
+            expect(link.getAttribute('href')).toMatch(/^mailto:hi@thunderfusion\.pt\?subject=/)
+        }
     })
 
-    it('renders the featured Brainwave product screenshot', () => {
+    it('routes both studio email links through hi@ as well', () => {
+        render(<HomePage />)
+        const emailLinks = screen.getAllByRole('link', { name: /^Email$/i })
+        expect(emailLinks).toHaveLength(founders.length)
+        for (const link of emailLinks) {
+            expect(link.getAttribute('href')).toMatch(/^mailto:hi@thunderfusion\.pt\?subject=/)
+        }
+    })
+
+    it('never exposes personal addresses anywhere in rendered HTML (raw or encoded)', () => {
+        render(<HomePage />)
+        const html = document.body.innerHTML
+        for (const personal of ['mariana@thunderfusion.pt', 'diogo@thunderfusion.pt']) {
+            expect(html).not.toContain(personal)
+            // URL-encoded forms must not slip through either
+            expect(html).not.toContain(personal.replace('@', '%40'))
+        }
+    })
+
+    it('renders the featured Brainwave product screenshot at the optimized path', () => {
         render(<HomePage />)
         const img = screen.getByAltText(/Brainwave/)
         expect(img).toHaveAttribute('src', '/products/brainwave.jpg')
     })
 
+    it('renders all featured films from the data file', () => {
+        render(<HomePage />)
+        const buttons = screen.getAllByRole('button', { name: /^Play /i })
+        expect(buttons).toHaveLength(featuredFilms.length)
+    })
+
     it('opens the showreel modal when the hero CTA is clicked', async () => {
         const user = userEvent.setup()
         render(<HomePage />)
-        await user.click(screen.getByRole('button', { name: /Watch the showreel/i }))
+        await user.click(screen.getByRole('button', { name: new RegExp(hero.ctaLabel, 'i') }))
         const iframe = screen.getByTitle('YouTube video player')
         expect(iframe).toBeInTheDocument()
-        expect(iframe.getAttribute('src')).toContain('pRLBLh7OBpA')
+        expect(iframe.getAttribute('src')).toContain(hero.showreelVideoId)
     })
 
-    it('opens the modal with the right videoId when a film is clicked', async () => {
+    it('opens the modal with the right videoId for the first film (data-driven, not hardcoded)', async () => {
         const user = userEvent.setup()
         render(<HomePage />)
         const firstFilm = screen.getAllByRole('button', { name: /^Play /i })[0]
         await user.click(firstFilm)
         const iframe = screen.getByTitle('YouTube video player')
-        // first film in the data is HES, videoId -k4LTkx3dAQ
-        expect(iframe.getAttribute('src')).toContain('-k4LTkx3dAQ')
+        expect(iframe.getAttribute('src')).toContain(featuredFilms[0].videoId)
+    })
+
+    it('closes the modal when the close button is clicked', async () => {
+        const user = userEvent.setup()
+        render(<HomePage />)
+        await user.click(screen.getAllByRole('button', { name: /^Play /i })[0])
+        expect(screen.getByTitle('YouTube video player')).toBeInTheDocument()
+        await user.click(screen.getByRole('button', { name: /Close video/i }))
+        expect(screen.queryByTitle('YouTube video player')).not.toBeInTheDocument()
+    })
+
+    it('closes the modal on Escape', async () => {
+        const user = userEvent.setup()
+        render(<HomePage />)
+        await user.click(screen.getAllByRole('button', { name: /^Play /i })[0])
+        expect(screen.getByTitle('YouTube video player')).toBeInTheDocument()
+        await user.keyboard('{Escape}')
+        expect(screen.queryByTitle('YouTube video player')).not.toBeInTheDocument()
+    })
+
+    it('marks the open modal with aria-modal="true" and a labelledby reference', async () => {
+        const user = userEvent.setup()
+        render(<HomePage />)
+        await user.click(screen.getByRole('button', { name: new RegExp(hero.ctaLabel, 'i') }))
+        const dialog = screen.getByRole('dialog')
+        expect(dialog).toHaveAttribute('aria-modal', 'true')
+        expect(dialog).toHaveAttribute('aria-labelledby')
     })
 })

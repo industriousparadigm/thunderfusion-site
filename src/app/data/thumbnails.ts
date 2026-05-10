@@ -8,7 +8,7 @@ const getYouTubeThumbnail = (videoId: string): string => {
 export const thumbnails: VideoPreviewThumbnail[] = [
     {
         title: 'Household Economics Security',
-        client: 'British Red Coss',
+        client: 'British Red Cross',
         src: '/thumbnails/hes.jpeg',
         alt: 'Thumbnail for HES',
         videoId: '-k4LTkx3dAQ'
@@ -57,7 +57,7 @@ export const thumbnails: VideoPreviewThumbnail[] = [
     },
     {
         title: 'Youth Empowerment Fund',
-        client: 'Global Youth Mobilazation / European Union',
+        client: 'Global Youth Mobilization / European Union',
         src: getYouTubeThumbnail('6T9ezrP-u5Q'),
         alt: 'Thumbnail for YEF',
         videoId: '6T9ezrP-u5Q'

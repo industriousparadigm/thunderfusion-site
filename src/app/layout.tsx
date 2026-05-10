@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from 'next'
 import { Prata, Jost } from 'next/font/google'
-import Script from 'next/script'
 import './globals.css'
 import Analytics from './components/Analytics'
 
 const prata = Prata({
     variable: '--font-prata',
     weight: '400',
-    subsets: ['latin']
+    subsets: ['latin'],
+    display: 'swap'
 })
 
 const jost = Jost({
@@ -88,6 +88,8 @@ export const viewport: Viewport = {
     themeColor: '#0a0f14'
 }
 
+// JSON-LD describing the studio. Personal addresses are intentionally NOT used
+// here — see the privacy-first contact decision (page.test.tsx anti-scrape).
 const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -118,12 +120,12 @@ const organizationJsonLd = {
     contactPoint: [
         {
             '@type': 'ContactPoint',
-            email: 'mariana@thunderfusion.pt',
+            email: 'hi@thunderfusion.pt',
             contactType: 'films and communications'
         },
         {
             '@type': 'ContactPoint',
-            email: 'diogo@thunderfusion.pt',
+            email: 'hi@thunderfusion.pt',
             contactType: 'software and engineering'
         }
     ]
@@ -136,9 +138,8 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${prata.variable} ${jost.variable}`}>
-                <Script
-                    id="organization-jsonld"
+            <body id="top" className={`${prata.variable} ${jost.variable}`}>
+                <script
                     type="application/ld+json"
                     dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
                 />

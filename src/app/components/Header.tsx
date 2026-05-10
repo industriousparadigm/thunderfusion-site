@@ -1,94 +1,93 @@
 'use client'
-import { useState, useEffect } from 'react'
+
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import styles from './Header.module.css'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaBars, FaTimes } from 'react-icons/fa'
+import styles from './Header.module.css'
 
-interface HeaderProps {
-    handleScroll: (id: string) => void
-}
+const NAV_ITEMS = [
+    { href: '#top', label: 'home' },
+    { href: '#films', label: 'films' },
+    { href: '#software', label: 'software' },
+    { href: '#studio', label: 'studio' },
+    { href: '#contact', label: 'contact' }
+] as const
 
-export default function Header({ handleScroll }: HeaderProps) {
+export default function Header() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false)
 
     useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 50)
-        }
-
-        window.addEventListener('scroll', handleScroll)
-        return () => window.removeEventListener('scroll', handleScroll)
+        const onWindowScroll = () => setScrolled(window.scrollY > 50)
+        window.addEventListener('scroll', onWindowScroll, { passive: true })
+        return () => window.removeEventListener('scroll', onWindowScroll)
     }, [])
 
-    const navItems = [
-        { href: '#', label: 'home', onClick: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
-        { href: '#films', label: 'films', onClick: () => handleScroll('films') },
-        { href: '#software', label: 'software', onClick: () => handleScroll('software') },
-        { href: '#studio', label: 'studio', onClick: () => handleScroll('studio') },
-        { href: '#contact', label: 'contact', onClick: () => handleScroll('contact') }
-    ]
-
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, onClick: () => void) => {
-        e.preventDefault()
-        onClick()
-        setMobileMenuOpen(false)
-    }
+    // Close the mobile menu after a nav click — works with native anchor scrolling.
+    const closeMenu = () => setMobileMenuOpen(false)
 
     return (
         <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
-            <div className={styles.logo}>
-                <Image src="/tflogo-new-transparent.png" alt="thunder fusion logo" fill />
-            </div>
-            
-            {/* Desktop Navigation */}
-            <nav className={styles.desktopNav}>
-                {navItems.map((item) => (
-                    <a
-                        key={item.label}
-                        onClick={(e) => handleNavClick(e, item.onClick)}
-                        className={styles.link}
-                        href={item.href}
-                    >
-                        <h6>{item.label}</h6>
+            <a href="#top" className={styles.logo} aria-label="Thunder Fusion home" onClick={closeMenu}>
+                <Image src="/tflogo-new-transparent.png" alt="" fill />
+            </a>
+
+            <nav className={styles.desktopNav} aria-label="Primary">
+                {NAV_ITEMS.map((item) => (
+                    <a key={item.label} href={item.href} className={styles.link}>
+                        <span>{item.label}</span>
                     </a>
                 ))}
             </nav>
 
-            {/* Mobile Menu Button */}
             <button
+                type="button"
                 className={styles.mobileMenuButton}
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Toggle mobile menu"
+                onClick={() => setMobileMenuOpen((v) => !v)}
+                aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-nav"
             >
                 {mobileMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
 
-            {/* Mobile Navigation */}
             <AnimatePresence>
                 {mobileMenuOpen && (
-                    <motion.nav
-                        className={styles.mobileNav}
-                        initial={{ x: '100%' }}
-                        animate={{ x: 0 }}
-                        exit={{ x: '100%' }}
-                        transition={{ type: 'tween', duration: 0.3 }}
-                    >
-                        {navItems.map((item) => (
-                            <motion.a
-                                key={item.label}
-                                onClick={(e) => handleNavClick(e, item.onClick)}
-                                className={styles.mobileLink}
-                                href={item.href}
-                                initial={{ opacity: 0, x: 50 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: navItems.indexOf(item) * 0.1 }}
-                            >
-                                {item.label}
-                            </motion.a>
-                        ))}
-                    </motion.nav>
+                    <>
+                        <motion.div
+                            className={styles.mobileBackdrop}
+                            onClick={closeMenu}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                            aria-hidden
+                        />
+                        <motion.nav
+                            id="mobile-nav"
+                            className={styles.mobileNav}
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ type: 'tween', duration: 0.3 }}
+                            aria-label="Primary"
+                        >
+                            {NAV_ITEMS.map((item, i) => (
+                                <motion.a
+                                    key={item.label}
+                                    href={item.href}
+                                    className={styles.mobileLink}
+                                    onClick={closeMenu}
+                                    initial={{ opacity: 0, x: 50 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: i * 0.05 }}
+                                >
+                                    {item.label}
+                                </motion.a>
+                            ))}
+                        </motion.nav>
+                    </>
                 )}
             </AnimatePresence>
         </header>

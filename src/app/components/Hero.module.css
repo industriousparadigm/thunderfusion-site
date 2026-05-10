@@ -1,0 +1,213 @@
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 7vw 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.heroGlowPink {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 70vw;
+    height: 70vw;
+    max-width: 900px;
+    max-height: 900px;
+    background: radial-gradient(circle, rgba(var(--pink-rgb), 0.32) 0%, rgba(var(--pink-rgb), 0) 60%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(20px);
+}
+
+.heroGlowCyan {
+    position: absolute;
+    bottom: -15%;
+    left: -10%;
+    width: 60vw;
+    height: 60vw;
+    max-width: 800px;
+    max-height: 800px;
+    background: radial-gradient(circle, rgba(var(--cyan-rgb), 0.14) 0%, rgba(var(--cyan-rgb), 0) 60%);
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(20px);
+}
+
+.heroContent {
+    position: relative;
+    z-index: 1;
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.eyebrow {
+    font-family: var(--font-jost), sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.7rem;
+    color: #8a939d;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.eyebrowDot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--pink);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--pink);
+    animation: pulse 2.4s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+.heroTitle {
+    font-family: var(--font-prata), serif;
+    color: #ffffff;
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    margin-bottom: 3rem;
+    font-weight: 400;
+}
+
+/* Scoped to direct title lines so we don't need !important to specialise the small line. */
+.heroTitleLine {
+    display: block;
+    font-size: clamp(3rem, 11vw, 9rem);
+}
+
+.heroLineSmall {
+    font-size: clamp(1.6rem, 4.5vw, 3.5rem);
+    color: #b8bec5;
+    margin-top: 1.5rem;
+    letter-spacing: -0.02em;
+}
+
+.heroLineSmall em {
+    font-style: italic;
+    color: var(--cyan);
+    font-family: var(--font-prata), serif;
+}
+
+.titlePink,
+.titleCyan {
+    font-style: italic;
+}
+
+.titlePink { color: var(--pink); }
+.titleCyan { color: var(--cyan); }
+
+.heroSub {
+    font-family: var(--font-jost), sans-serif;
+    color: #a8aeb5;
+    font-size: clamp(0.95rem, 1.3vw, 1.15rem);
+    line-height: 1.65;
+    max-width: 60ch;
+    margin-bottom: 3rem;
+}
+
+.heroCta {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: var(--font-jost), sans-serif;
+    font-size: 1rem;
+    padding: 0;
+    transition: gap 0.3s ease;
+}
+
+.heroCta:hover {
+    gap: 1.5rem;
+}
+
+.heroCta:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 8px;
+    border-radius: 4px;
+}
+
+.heroCtaCircle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--pink);
+    color: var(--black);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    padding-left: 4px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.heroCta:hover .heroCtaCircle {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 14px rgba(var(--pink-rgb), 0.18);
+}
+
+.heroCtaLabel {
+    border-bottom: 1px solid #4a5562;
+    padding-bottom: 4px;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.heroCta:hover .heroCtaLabel {
+    border-color: var(--cyan);
+    color: var(--cyan);
+}
+
+.heroSideLabel {
+    position: absolute;
+    right: 2rem;
+    top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: right center;
+    font-family: var(--font-jost), sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: #4a5562;
+    z-index: 1;
+}
+
+.heroScrollHint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-jost), sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.4em;
+    color: #4a5562;
+    z-index: 1;
+    animation: bounce 2.4s ease-in-out infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+}
+
+@media (max-width: 900px) {
+    .heroSideLabel { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .eyebrowDot,
+    .heroScrollHint {
+        animation: none;
+    }
+}

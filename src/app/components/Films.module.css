@@ -1,0 +1,169 @@
+.filmsSection {
+    padding: 10rem 7vw 8rem;
+    max-width: 1700px;
+    margin: 0 auto;
+}
+
+.filmsList {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #1a232e;
+}
+
+.filmRow {
+    display: grid;
+    grid-template-columns: 80px 1fr 320px 60px;
+    align-items: center;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid #1a232e;
+    background: none;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+    text-align: left;
+    width: 100%;
+    transition: padding-left 0.4s ease;
+    position: relative;
+}
+
+.filmRow:hover {
+    padding-left: 1.5rem;
+}
+
+.filmRow:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: -8px;
+}
+
+.filmRow::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--pink);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s ease;
+}
+
+.filmRow:hover::before,
+.filmRow:focus-visible::before {
+    transform: scaleY(1);
+}
+
+.filmIndex {
+    font-family: var(--font-jost), sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: #4a5562;
+    transition: color 0.3s;
+}
+
+.filmRow:hover .filmIndex,
+.filmRow:focus-visible .filmIndex {
+    color: var(--pink);
+}
+
+.filmInfo h3 {
+    font-family: var(--font-prata), serif;
+    font-size: clamp(1.3rem, 2.6vw, 2rem);
+    color: #ffffff;
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    font-weight: 400;
+    margin-bottom: 0.4rem;
+    transition: color 0.3s;
+}
+
+.filmRow:hover .filmInfo h3,
+.filmRow:focus-visible .filmInfo h3 {
+    color: #ffffff;
+}
+
+.filmInfo p {
+    font-family: var(--font-jost), sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--cyan);
+}
+
+.filmThumb {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: var(--black-soft);
+    overflow: hidden;
+    transition: transform 0.5s ease, opacity 0.3s;
+    opacity: 0.85;
+}
+
+.filmRow:hover .filmThumb,
+.filmRow:focus-visible .filmThumb {
+    opacity: 1;
+}
+
+.filmThumb img {
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.filmRow:hover .filmThumb img,
+.filmRow:focus-visible .filmThumb img {
+    transform: scale(1.06);
+}
+
+.filmThumbOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(10, 15, 20, 0.4);
+    color: #fff;
+    font-size: 1.25rem;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.filmRow:hover .filmThumbOverlay,
+.filmRow:focus-visible .filmThumbOverlay {
+    opacity: 1;
+}
+
+.filmArrow {
+    font-family: var(--font-jost), sans-serif;
+    font-size: 1.8rem;
+    color: #4a5562;
+    text-align: right;
+    transition: color 0.3s, transform 0.3s ease;
+}
+
+.filmRow:hover .filmArrow,
+.filmRow:focus-visible .filmArrow {
+    color: var(--pink);
+    transform: translate(4px, -4px);
+}
+
+@media (max-width: 900px) {
+    .filmRow {
+        grid-template-columns: 50px 1fr;
+        grid-template-rows: auto auto;
+        gap: 1rem;
+    }
+    .filmThumb {
+        grid-column: 1 / -1;
+        order: 3;
+    }
+    .filmArrow {
+        position: absolute;
+        top: 2rem;
+        right: 0;
+        font-size: 1.4rem;
+    }
+}

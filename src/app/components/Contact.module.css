@@ -1,0 +1,112 @@
+.contactSection {
+    padding: 10rem 7vw;
+    max-width: 1700px;
+    margin: 0 auto;
+}
+
+.contactSplit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    border-top: 1px solid #1a232e;
+    padding-top: 4rem;
+}
+
+@media (max-width: 768px) {
+    .contactSplit {
+        grid-template-columns: 1fr;
+    }
+}
+
+.contactCard {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: 3rem 2.5rem;
+    text-decoration: none;
+    color: inherit;
+    background: var(--black-soft);
+    border: 1px solid #1a232e;
+    transition: background-color 0.3s, border-color 0.3s, transform 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.contactCard:hover,
+.contactCard:focus-visible {
+    transform: translateY(-3px);
+}
+
+.contactCard:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+}
+
+.contactPink:hover,
+.contactPink:focus-visible {
+    background: var(--pink);
+    border-color: var(--pink);
+}
+
+.contactCyan:hover,
+.contactCyan:focus-visible {
+    background: var(--cyan);
+    border-color: var(--cyan);
+    color: var(--black);
+}
+
+.contactLabel {
+    font-family: var(--font-jost), sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #8a939d;
+    transition: color 0.3s;
+}
+
+.contactPink:hover .contactLabel,
+.contactPink:focus-visible .contactLabel,
+.contactCyan:hover .contactLabel,
+.contactCyan:focus-visible .contactLabel {
+    color: rgba(10, 15, 20, 0.7);
+}
+
+.contactCta {
+    font-family: var(--font-prata), serif;
+    font-size: clamp(1.4rem, 3vw, 2.25rem);
+    color: #ffffff;
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    transition: color 0.3s;
+}
+
+.contactPink:hover .contactCta,
+.contactPink:focus-visible .contactCta {
+    color: var(--black);
+}
+
+.contactCyan:hover .contactCta,
+.contactCyan:focus-visible .contactCta {
+    color: var(--black);
+}
+
+.contactArrow {
+    font-family: var(--font-jost), sans-serif;
+    font-size: 2rem;
+    align-self: flex-end;
+    color: #4a5562;
+    transition: color 0.3s, transform 0.3s ease;
+}
+
+.contactCard:hover .contactArrow,
+.contactCard:focus-visible .contactArrow {
+    color: #ffffff;
+    transform: translate(6px, -6px);
+}
+
+.contactPink:hover .contactArrow,
+.contactPink:focus-visible .contactArrow,
+.contactCyan:hover .contactArrow,
+.contactCyan:focus-visible .contactArrow {
+    color: var(--black);
+}

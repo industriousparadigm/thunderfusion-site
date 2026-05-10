@@ -6,8 +6,11 @@ afterEach(() => {
     cleanup()
 })
 
-// happy-dom doesn't ship IntersectionObserver yet; framer-motion's whileInView
-// needs it. Stub with an immediate-trigger implementation so animations resolve.
+/**
+ * happy-dom ships no IntersectionObserver. framer-motion's `whileInView`
+ * depends on it, so we stub it with an immediate-fire implementation that
+ * resolves animations synchronously in tests.
+ */
 class MockIntersectionObserver {
     callback: IntersectionObserverCallback
     constructor(callback: IntersectionObserverCallback) {
@@ -29,8 +32,8 @@ class MockIntersectionObserver {
             this as unknown as IntersectionObserver
         )
     }
-    unobserve() {}
-    disconnect() {}
+    unobserve = vi.fn()
+    disconnect = vi.fn()
     takeRecords(): IntersectionObserverEntry[] {
         return []
     }
@@ -41,5 +44,9 @@ class MockIntersectionObserver {
 
 vi.stubGlobal('IntersectionObserver', MockIntersectionObserver)
 
-// scrollIntoView is missing in happy-dom
+// happy-dom doesn't implement scrollIntoView.
 Element.prototype.scrollIntoView = vi.fn()
+
+// happy-dom's iframe will attempt a real fetch of `src` and emit unhandled
+// rejections on cleanup. Stub `window.fetch` to no-op for tests.
+vi.stubGlobal('fetch', vi.fn().mockResolvedValue(new Response(null, { status: 200 })))
