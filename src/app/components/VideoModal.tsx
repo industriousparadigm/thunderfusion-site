@@ -9,6 +9,7 @@ import {
     useState,
     type ReactNode
 } from 'react'
+import { MotionConfig } from 'framer-motion'
 import styles from './VideoModal.module.css'
 
 /** YouTube video IDs are exactly 11 chars of [A-Za-z0-9_-]. Validate at the boundary. */
@@ -42,8 +43,10 @@ export function VideoModalProvider({ children }: { children: ReactNode }) {
 
     return (
         <VideoModalContext.Provider value={{ open, close, videoId }}>
-            {children}
-            <VideoModal />
+            <MotionConfig reducedMotion="user">
+                {children}
+                <VideoModal />
+            </MotionConfig>
         </VideoModalContext.Provider>
     )
 }
