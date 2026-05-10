@@ -22,39 +22,51 @@ const permanentMarker = Permanent_Marker({
 })
 
 export const metadata: Metadata = {
-    title: 'Thunder Fusion - Bold Filmmaking with a Human Purpose',
-    description: 'Creative consultancy specializing in humanitarian storytelling and impactful media solutions for international organizations and NGOs.',
-    keywords: ['video production', 'humanitarian storytelling', 'NGO communications', 'creative consultancy', 'documentary filmmaking', 'digital marketing', 'social impact'],
+    title: 'Thunder Fusion — Films and Software for Humanitarian Missions',
+    description:
+        'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, FIND. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.',
+    keywords: [
+        'humanitarian storytelling',
+        'documentary filmmaking',
+        'NGO communications',
+        'creative consultancy',
+        'product engineering',
+        'AI-assisted development',
+        'humanitarian video production',
+        'social impact'
+    ],
     authors: [{ name: 'Thunder Fusion' }],
     creator: 'Thunder Fusion',
     publisher: 'Thunder Fusion',
     formatDetection: {
         email: false,
         address: false,
-        telephone: false,
+        telephone: false
     },
-    metadataBase: new URL('https://thunderfusion.com'),
+    metadataBase: new URL('https://thunderfusion.pt'),
     openGraph: {
-        title: 'Thunder Fusion - Bold Filmmaking with a Human Purpose',
-        description: 'Creative consultancy specializing in humanitarian storytelling and impactful media solutions.',
-        url: 'https://thunderfusion.com',
+        title: 'Thunder Fusion — Films and Software for Humanitarian Missions',
+        description:
+            'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, FIND. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.',
+        url: 'https://thunderfusion.pt',
         siteName: 'Thunder Fusion',
         images: [
             {
                 url: '/opengraph-image.jpg',
                 width: 1200,
                 height: 630,
-                alt: 'Thunder Fusion - Creative Consultancy',
-            },
+                alt: 'Thunder Fusion — Creative and Engineering Studio'
+            }
         ],
         locale: 'en_US',
-        type: 'website',
+        type: 'website'
     },
     twitter: {
         card: 'summary_large_image',
-        title: 'Thunder Fusion - Bold Filmmaking with a Human Purpose',
-        description: 'Creative consultancy specializing in humanitarian storytelling and impactful media solutions.',
-        images: ['/twitter-image.jpg'],
+        title: 'Thunder Fusion — Films and Software for Humanitarian Missions',
+        description:
+            "A creative and engineering studio. Films for the world's largest aid orgs. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.",
+        images: ['/twitter-image.jpg']
     },
     robots: {
         index: true,
