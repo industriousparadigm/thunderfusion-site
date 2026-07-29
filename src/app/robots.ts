@@ -4,9 +4,8 @@ export default function robots(): MetadataRoute.Robots {
     return {
         rules: {
             userAgent: '*',
-            allow: '/',
-            disallow: '/api/',
+            allow: '/'
         },
-        sitemap: 'https://thunderfusion.com/sitemap.xml',
+        sitemap: 'https://thunderfusion.pt/sitemap.xml'
     }
 }
