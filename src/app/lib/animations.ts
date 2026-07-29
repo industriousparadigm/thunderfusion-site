@@ -14,9 +14,3 @@ export const heroLineVariants: Variants = {
         transition: { duration: 0.85, delay: 0.15 + i * 0.18, ease: EASE }
     })
 }
-
-/** Standard "fade up on scroll" used by section cards. */
-export const fadeUp: Variants = {
-    hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: EASE } }
-}

@@ -35,8 +35,7 @@ src/app/
 ├── layout.tsx            # fonts, metadata, viewport, JSON-LD
 ├── globals.css           # design tokens (--pink, --cyan, ...) + global resets
 ├── data/                 # all content. Edit these to update copy/work/founders.
-│   ├── thumbnails.ts     # full film library (videoId, title, client, src, alt)
-│   ├── films.ts          # featured films (curated by videoId, not slice)
+│   ├── films.ts          # the films on the page (videoId, title, client, src, alt)
 │   ├── clients.ts        # marquee org names
 │   ├── software.ts       # featured product + supporting items
 │   ├── studio.ts         # founders (Mariana, Diogo) + accents + links
@@ -63,8 +62,7 @@ src/app/
 |---|---|
 | Hero tagline / subtitle / CTA label | `src/app/data/copy.ts` |
 | Section headers (number/title/meta) | `src/app/data/copy.ts` → `sectionHeaders` |
-| Featured films on the home page | `src/app/data/films.ts` (`FEATURED_VIDEO_IDS`) |
-| Add a film to the library | `src/app/data/thumbnails.ts` |
+| Add / remove / reorder a film | `src/app/data/films.ts` |
 | Marquee client list | `src/app/data/clients.ts` |
 | Featured software / Brainwave copy | `src/app/data/software.ts` |
 | Founder bios / links / accents | `src/app/data/studio.ts` |
