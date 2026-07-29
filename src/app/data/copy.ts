@@ -9,7 +9,7 @@ export const hero = {
         { lead: 'We build ', accent: 'tools.', tone: 'cyan' as Accent }
     ],
     closer: { lead: 'For missions ', italic: 'that matter.' },
-    sub: 'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, FIND. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.',
+    sub: 'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, Bloom Energy, FIND. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.',
     showreelVideoId: 'pRLBLh7OBpA',
     sideLabel: 'EST · MATOSINHOS · PORTUGAL',
     scrollHint: 'SCROLL ↓',

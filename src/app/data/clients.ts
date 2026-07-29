@@ -5,11 +5,11 @@ export const marqueeClients = [
     'British Red Cross',
     'UN Women',
     'FIND',
+    'Bloom Energy',
     'IFPMA',
     'World Humanitarian Forum',
     'ICRC',
     'Global Youth Mobilization',
     'European Union',
-    'Football for Development',
-    'Bloom Energy'
+    'Football for Development'
 ] as const
