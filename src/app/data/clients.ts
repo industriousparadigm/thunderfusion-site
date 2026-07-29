@@ -1,4 +1,4 @@
-// Recognizable humanitarian organizations whose names scroll in the marquee
+// Recognizable client organizations whose names scroll in the marquee
 // under the hero. Order matters — names rotate left-to-right at 80s loop.
 export const marqueeClients = [
     'IFRC',
@@ -10,5 +10,6 @@ export const marqueeClients = [
     'ICRC',
     'Global Youth Mobilization',
     'European Union',
-    'Football for Development'
+    'Football for Development',
+    'Bloom Energy'
 ] as const
