@@ -37,7 +37,7 @@ src/app/
 ├── data/                 # all content. Edit these to update copy/work/founders.
 │   ├── films.ts          # the films on the page (videoId, title, client, src, alt)
 │   ├── clients.ts        # marquee org names
-│   ├── software.ts       # featured product + supporting items
+│   ├── software.ts       # featured client products + service rows
 │   ├── studio.ts         # founders (Mariana, Diogo) + accents + links
 │   └── copy.ts           # hero, section headers, contact CTAs, footer
 ├── lib/
@@ -64,9 +64,10 @@ src/app/
 | Section headers (number/title/meta) | `src/app/data/copy.ts` → `sectionHeaders` |
 | Add / remove / reorder a film | `src/app/data/films.ts` |
 | Marquee client list | `src/app/data/clients.ts` |
-| Featured software / Brainwave copy | `src/app/data/software.ts` |
+| Featured client products (RC3, Brainwave) / service rows | `src/app/data/software.ts` |
 | Founder bios / links / accents | `src/app/data/studio.ts` |
 | Contact CTA text + subjects | `src/app/data/copy.ts` → `contactCtas` |
+| Footer links (e.g. YouTube) | `src/app/data/copy.ts` → `footer.links` |
 | Color tokens (pink, cyan, ...) | `src/app/globals.css` `:root` |
 | A section's styles | `src/app/components/<Name>.module.css` |
 | Motion timing / easing | `src/app/lib/animations.ts` |

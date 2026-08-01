@@ -24,3 +24,23 @@
     color: var(--pink);
     letter-spacing: -0.02em;
 }
+
+.footerRight {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.footerLink {
+    color: #8a939d;
+    transition: color 0.2s;
+}
+
+.footerLink:hover {
+    color: var(--pink-light);
+}
+
+.footerLink:focus-visible {
+    outline: 2px solid var(--cyan);
+    outline-offset: 2px;
+}

@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { contactCtas, sectionHeaders } from '../data/copy'
+import { contactCtas, contactEmail, sectionHeaders } from '../data/copy'
 import SectionHeader from './SectionHeader'
 import styles from './Contact.module.css'
 
@@ -34,6 +34,13 @@ export default function Contact() {
                     )
                 })}
             </div>
+
+            <p className={styles.contactEmailLine}>
+                or write to{' '}
+                <a href={`mailto:${contactEmail}`} className={styles.contactEmailLink}>
+                    {contactEmail}
+                </a>
+            </p>
         </section>
     )
 }

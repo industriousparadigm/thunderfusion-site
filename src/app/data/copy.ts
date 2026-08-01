@@ -9,7 +9,7 @@ export const hero = {
         { lead: 'We build ', accent: 'tools.', tone: 'cyan' as Accent }
     ],
     closer: { lead: 'For missions ', italic: 'that matter.' },
-    sub: 'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, Bloom Energy, FIND. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.',
+    sub: 'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, Bloom Energy, FIND. Software for the French Red Cross, by founders who shipped at Okra Solar, Trinny London, Stylist Magazine.',
     showreelVideoId: 'pRLBLh7OBpA',
     sideLabel: 'EST · MATOSINHOS · PORTUGAL',
     scrollHint: 'SCROLL ↓',
@@ -20,7 +20,7 @@ export const sectionHeaders = {
     films: {
         number: '01',
         title: 'Films',
-        meta: "Documentaries, campaigns, and field stories — produced for the world's largest humanitarian organizations."
+        meta: "Documentaries, campaigns, and learning content — produced for the world's largest humanitarian organizations. Long-term IFRC production partner."
     },
     software: {
         number: '02',
@@ -35,7 +35,7 @@ export const sectionHeaders = {
     contact: {
         number: '04',
         title: 'Get in touch',
-        meta: "Tell us what you're working on."
+        meta: "Tell us what you're working on. Projects, retainers, or embedded support."
     }
 } as const
 
@@ -61,7 +61,15 @@ export const contactCtas: ContactCta[] = [
     }
 ]
 
-export const footer = {
+export interface FooterLink {
+    label: string
+    href: string
+}
+
+export const footer: { location: string; mark: string; links: FooterLink[] } = {
     location: 'Thunder Fusion · Matosinhos, Portugal',
-    mark: 'TF'
-} as const
+    mark: 'TF',
+    links: [{ label: 'YouTube', href: 'https://www.youtube.com/@ThunderFusionAgency' }]
+}
+
+export const contactEmail = 'hi@thunderfusion.pt'

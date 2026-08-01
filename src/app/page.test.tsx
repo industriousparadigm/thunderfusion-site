@@ -14,7 +14,8 @@ vi.mock('next/image', () => ({
 import HomePage from './page'
 import { featuredFilms } from './data/films'
 import { founders } from './data/studio'
-import { contactCtas, hero } from './data/copy'
+import { softwareFeatures } from './data/software'
+import { contactCtas, contactEmail, footer, hero } from './data/copy'
 
 describe('HomePage', () => {
     it('renders the dual-pillar tagline from the copy data file', () => {
@@ -64,6 +65,26 @@ describe('HomePage', () => {
         render(<HomePage />)
         const img = screen.getByAltText(/Brainwave/)
         expect(img).toHaveAttribute('src', '/products/brainwave.jpg')
+    })
+
+    it('renders the RC3 feature with a link to the live database', () => {
+        render(<HomePage />)
+        const rc3 = softwareFeatures.find((feature) => feature.name === 'RC3 Research Database')
+        const link = screen.getByRole('link', { name: new RegExp(rc3!.linkLabel!, 'i') })
+        expect(link).toHaveAttribute('href', rc3!.href)
+    })
+
+    it('links the footer to the studio YouTube channel', () => {
+        render(<HomePage />)
+        const youtube = footer.links.find((link) => link.label === 'YouTube')!
+        const link = screen.getByRole('link', { name: youtube.label })
+        expect(link).toHaveAttribute('href', youtube.href)
+    })
+
+    it('shows the contact email as a plain, visible mailto link', () => {
+        render(<HomePage />)
+        const link = screen.getByRole('link', { name: contactEmail })
+        expect(link).toHaveAttribute('href', `mailto:${contactEmail}`)
     })
 
     it('renders all featured films from the data file', () => {

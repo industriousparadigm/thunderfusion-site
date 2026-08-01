@@ -18,7 +18,7 @@ export const founders: Founder[] = [
         accent: 'pink',
         role: 'Creative Director',
         name: 'Mariana Miragaia',
-        body: "Fifteen years producing humanitarian films and communication campaigns for the world's largest aid organizations. Leads field production and editorial direction.",
+        body: "More than a decade producing humanitarian films, campaigns, and learning content for the world's largest aid organizations. Leads field production and editorial direction.",
         mailto: 'mailto:hi@thunderfusion.pt?subject=For%20Mariana',
         linkedin: 'https://www.linkedin.com/in/mariana-miragaia-5244965b/'
     },

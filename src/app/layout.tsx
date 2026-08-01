@@ -19,17 +19,7 @@ const jost = Jost({
 export const metadata: Metadata = {
     title: 'Thunder Fusion — Films and Software for Humanitarian Missions',
     description:
-        'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, Bloom Energy, FIND. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.',
-    keywords: [
-        'humanitarian storytelling',
-        'documentary filmmaking',
-        'NGO communications',
-        'creative consultancy',
-        'product engineering',
-        'AI-assisted development',
-        'humanitarian video production',
-        'social impact'
-    ],
+        'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, Bloom Energy, FIND. Software for the French Red Cross, by founders who shipped at Okra Solar, Trinny London, Stylist Magazine.',
     authors: [{ name: 'Thunder Fusion' }],
     creator: 'Thunder Fusion',
     publisher: 'Thunder Fusion',
@@ -45,7 +35,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: 'Thunder Fusion — Films and Software for Humanitarian Missions',
         description:
-            'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, Bloom Energy, FIND. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.',
+            'A creative and engineering studio. Films for IFRC, British Red Cross, UN Women, Bloom Energy, FIND. Software for the French Red Cross, by founders who shipped at Okra Solar, Trinny London, Stylist Magazine.',
         url: 'https://thunderfusion.pt',
         siteName: 'Thunder Fusion',
         images: [
@@ -63,7 +53,7 @@ export const metadata: Metadata = {
         card: 'summary_large_image',
         title: 'Thunder Fusion — Films and Software for Humanitarian Missions',
         description:
-            "A creative and engineering studio. Films for the world's largest aid orgs. Software shipped at Okra Solar, Route Reports, Trinny London, Stylist Magazine.",
+            "A creative and engineering studio. Films for the world's largest aid orgs. Software for the French Red Cross, by founders who shipped at Okra Solar, Trinny London, Stylist Magazine.",
         images: ['/twitter-image.jpg']
     },
     robots: {

@@ -36,6 +36,29 @@
     }
 }
 
+.softwareFeatureReverse {
+    grid-template-columns: 1.4fr 1fr;
+}
+
+.softwareFeatureReverse .softwareFeatureText {
+    order: 2;
+}
+
+.softwareFeatureReverse .softwareFeatureImage {
+    order: 1;
+}
+
+@media (max-width: 900px) {
+    .softwareFeatureReverse {
+        grid-template-columns: 1fr;
+    }
+
+    .softwareFeatureReverse .softwareFeatureText,
+    .softwareFeatureReverse .softwareFeatureImage {
+        order: initial;
+    }
+}
+
 .softwareFeatureText {
     display: flex;
     flex-direction: column;
@@ -75,6 +98,31 @@
     font-size: 1.05rem;
     line-height: 1.65;
     max-width: 50ch;
+}
+
+.softwareFeatureLink {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-jost), sans-serif;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--black);
+    border-bottom: 1px solid rgba(10, 15, 20, 0.4);
+    padding-bottom: 3px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.softwareFeatureLink:hover,
+.softwareFeatureLink:focus-visible {
+    border-color: var(--black);
+}
+
+.softwareFeatureLink:focus-visible {
+    outline: 2px solid var(--black);
+    outline-offset: 4px;
 }
 
 .softwareFeatureImage {
