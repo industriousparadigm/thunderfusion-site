@@ -1,5 +1,6 @@
 // Films shown on the home page, in the order they appear.
-const youTubeThumbnail = (videoId: string) => `https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`
+const youTubeThumbnail = (videoId: string, quality = 'sddefault') =>
+    `https://i.ytimg.com/vi/${videoId}/${quality}.jpg`
 
 export interface Film {
     title: string
@@ -14,42 +15,42 @@ export const featuredFilms: Film[] = [
         title: 'Household Economics Security',
         client: 'British Red Cross',
         src: '/thumbnails/hes.jpeg',
-        alt: 'Thumbnail for HES',
+        alt: '',
         videoId: '-k4LTkx3dAQ'
     },
     {
         title: 'Capacity Building Fund',
         client: 'IFRC',
         src: youTubeThumbnail('xV30PdZKh2k'),
-        alt: 'Thumbnail for CBF',
+        alt: '',
         videoId: 'xV30PdZKh2k'
     },
     {
         title: '16 Days of Activism Against Gender-Based Violence',
         client: 'IFRC / UN Women',
         src: youTubeThumbnail('O5KnUVj0jwc'),
-        alt: 'Thumbnail for Gender-Based Violence',
+        alt: '',
         videoId: 'O5KnUVj0jwc'
     },
     {
         title: 'Introduction to Market Assessment',
         client: 'IFRC',
         src: youTubeThumbnail('dOrI1kxhp5U'),
-        alt: 'Thumbnail for Market Assessment',
+        alt: '',
         videoId: 'dOrI1kxhp5U'
     },
     {
         title: 'IFPMA Interview Series: Innovation Ecosystem',
-        client: 'International Federation of Pharmaceutical Manufacturers and Associations',
+        client: 'IFPMA',
         src: youTubeThumbnail('z7haT6I7P0Q'),
-        alt: 'Thumbnail for IFPMA',
+        alt: '',
         videoId: 'z7haT6I7P0Q'
     },
     {
         title: 'Hepatitis C virus (HCV) Diagnosis',
         client: 'FIND',
-        src: youTubeThumbnail('MKV72jMMAg4'),
-        alt: 'Thumbnail for FIND',
+        src: youTubeThumbnail('MKV72jMMAg4', 'hqdefault'),
+        alt: '',
         videoId: 'MKV72jMMAg4'
     }
 ]
