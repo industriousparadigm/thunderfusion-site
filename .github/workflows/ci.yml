@@ -51,32 +51,3 @@ jobs:
               run: npx --yes @lhci/cli@0.14.0 autorun
               env:
                   LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
-
-    release:
-        # Vercel Hobby only builds commits authored by the account owner, so a
-        # green push by anyone else gets an empty owner commit stacked on top.
-        # A push made with GITHUB_TOKEN does not start another run.
-        name: release
-        if: github.event_name == 'push'
-        runs-on: ubuntu-latest
-        needs: quality
-        permissions:
-            contents: write
-        steps:
-            - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
-            - run: |
-                  OWNER_EMAIL='dsgmcosta@gmail.com'
-                  if [ "$(git log -1 --format='%ae')" = "$OWNER_EMAIL" ]; then
-                      echo "::notice title=Release::Tip is the owner's, Vercel deploys it as-is"
-                      exit 0
-                  fi
-                  SHA=$(git log -1 --format='%h')
-                  WHO=$(git log -1 --format='%an')
-                  git config user.name 'Diogo'
-                  git config user.email "$OWNER_EMAIL"
-                  git commit --allow-empty -m "release: ${SHA} by ${WHO}" -m "$(git log -1 --format='%s')"
-                  if ! git push origin HEAD:main; then
-                      echo "::notice title=Release::main moved during this run, the newer run releases it"
-                      exit 0
-                  fi
-                  echo "::notice title=Release::Stacked a release commit over ${SHA} by ${WHO}"
