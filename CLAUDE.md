@@ -153,5 +153,9 @@ in a separate job. Lighthouse hard-errors on accessibility <0.9 and SEO <0.95.
 ## Deployment
 
 Vercel auto-deploys on push to `main`. The CI workflow runs in parallel.
+Vercel Hobby only builds commits by the owner, so when someone else pushes,
+CI's `release` job stacks an empty `release: <sha> by <name>` commit in the
+owner's name once lint, tests and build pass, and Vercel deploys that. A red
+suite means their push does not go live.
 Lighthouse uses `temporary-public-storage` (no token needed); for PR comments,
 add `LHCI_GITHUB_APP_TOKEN` to repo secrets.
